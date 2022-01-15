@@ -32,7 +32,10 @@ namespace Projekat____Grupa_7
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                Console.WriteLine((i+1).ToString() + ". " + Opcije[i]);
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write((i + 1).ToString() + ". ");
+                Console.ResetColor();
+                Console.WriteLine(Opcije[i]);
             }
             Console.ResetColor();
         }
