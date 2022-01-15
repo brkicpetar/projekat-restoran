@@ -21,7 +21,7 @@ namespace Projekat____Grupa_7
 ");
             Console.WriteLine();
             Console.WriteLine("                                        Aplikacija se učitava...\n");
-            for (int i = 0; i <= 100; i++)
+            for (int i = 0; i < 100; i++)
             {
                 Console.Write("║");
                 System.Threading.Thread.Sleep(50);
