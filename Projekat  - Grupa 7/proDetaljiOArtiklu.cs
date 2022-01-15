@@ -13,6 +13,7 @@ namespace Projekat____Grupa_7
         {
             Console.Clear();
             string[] lines = File.ReadAllLines(Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + Artikal + ".pf");
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(@"                 _ _ _              _ _                    _____           _                        
      /\         | (_) |            (_|_)                  |  __ \         | |                       
     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
@@ -24,6 +25,7 @@ namespace Projekat____Grupa_7
 
 {0}:
 ", Artikal);
+            Console.ResetColor();
             for (int i = 0; i < lines.Length; i++)
             {
                 Console.WriteLine(lines[i]);
@@ -34,11 +36,9 @@ namespace Projekat____Grupa_7
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Povratak na meni jela i predjela");
             Console.ResetColor();
-            if(Console.ReadKey().Key == ConsoleKey.Enter)
-            {
-                proMeniJelaPredjela p = new proMeniJelaPredjela();
-                p.Init();
-            }
+            while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }
+            proMeniJelaPredjela p = new proMeniJelaPredjela();
+            p.Init();
         }
     }
 }
