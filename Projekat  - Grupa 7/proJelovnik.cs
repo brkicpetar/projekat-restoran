@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Projekat____Grupa_7
 {
-    class proMeniJelaPredjela
+    class proJelovnik
     {
         public void Init()
         {
@@ -25,7 +25,7 @@ namespace Projekat____Grupa_7
 
 _______________________________________________________________________________________________________________
 
-Meni predjela i glavnih jela:
+Jelovnik:
 ");
             int IzabraniIndex = meni.PokreniMeni();
             if (IzabraniIndex == menuContent.Length)

@@ -15,7 +15,7 @@ namespace Projekat____Grupa_7
         }
         private void PokretanjeMenija()
         {
-            string[] opcije = new string[] { "Meni predjela i glavnih jela", "Karta pića", "Narudžbine", "Rezervacija", "Naručivanje","Knjiga utisaka" ,"Skladište", "Prijava za menadžera restorana", "Napusti program" };
+            string[] opcije = new string[] { "Jelovnik", "Karta pića", "Narudžbine", "Rezervacija", "Naručivanje","Knjiga utisaka" ,"Skladište", "Prijava za menadžera restorana", "Napusti program" };
             proMenu meni = new proMenu(opcije, @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
@@ -34,7 +34,7 @@ Glavni meni:
             if(IzabraniIndex == opcije.Length - 1) return;
             else if(IzabraniIndex == 0)
             {
-                proMeniJelaPredjela p = new proMeniJelaPredjela();
+                proJelovnik p = new proJelovnik();
                 p.Init();
             }
             

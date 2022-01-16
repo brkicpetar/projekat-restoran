@@ -35,7 +35,7 @@ ________________________________________________________________________________
             Console.WriteLine("Povratak na meni jela i predjela");
             Console.ResetColor();
             while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }
-            proMeniJelaPredjela p = new proMeniJelaPredjela();
+            proJelovnik p = new proJelovnik();
             p.Init();
         }
     }
