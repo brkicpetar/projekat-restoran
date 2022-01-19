@@ -8,7 +8,7 @@ namespace Projekat____Grupa_7
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.OutputEncoding = Encoding.UTF8;
             Console.Title = "Projekat \"Aplikacija za Restoran\" - Grupa 7";
             Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
@@ -22,7 +22,7 @@ namespace Projekat____Grupa_7
 ");
             Console.WriteLine();
             Console.WriteLine("                                            Aplikacija se učitava...\n");
-            Console.Write("      ");
+            Console.Write("    ");
             for (int i = 0; i < 100; i++)
             {
                 Console.Write("║");

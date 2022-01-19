@@ -17,7 +17,7 @@ namespace Projekat____Grupa_7
 
         private void IspisOpcija()
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(Naslov);
             Console.ResetColor();
             for (int i = 0; i < Opcije.Length; i++)
@@ -30,9 +30,8 @@ namespace Projekat____Grupa_7
                 else
                 {
                     Console.BackgroundColor = ConsoleColor.Black;
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                 }
-                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write((i + 1).ToString() + ". ");
                 Console.ResetColor();
                 Console.WriteLine(Opcije[i]);

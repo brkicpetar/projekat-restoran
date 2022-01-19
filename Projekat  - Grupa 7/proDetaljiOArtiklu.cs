@@ -9,7 +9,7 @@ namespace Projekat____Grupa_7
         {
             Console.Clear();
             string[] lines = File.ReadAllLines(Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + Artikal + ".pf");
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
@@ -22,7 +22,7 @@ namespace Projekat____Grupa_7
 _______________________________________________________________________________________________________________
 
 {0}:
-", Artikal);
+", Artikal.Split('=')[0]);
             Console.ResetColor();
             for (int i = 0; i < lines.Length; i++)
             {
@@ -32,7 +32,7 @@ ________________________________________________________________________________
             Console.WriteLine();
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("Povratak na meni jela i predjela");
+            Console.WriteLine("Povratak na jelovnik");
             Console.ResetColor();
             while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }
             proJelovnik p = new proJelovnik();
