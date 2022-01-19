@@ -119,7 +119,11 @@ Unos novog jela:
                 }
                 if (!File.ReadAllLines(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf").Contains(imeNovogJela + "=" + cena))
                 {
-                    File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf", "\n" + imeNovogJela + "=" + cena);
+                    if(File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf").EndsWith(Environment.NewLine))
+                    {
+                        File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf", imeNovogJela + "=" + cena);
+                    }
+                    else File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf", "\n" + imeNovogJela + "=" + cena);
                 }
                 else
                 {
@@ -307,7 +311,11 @@ Unos novog pića:
                 }
                 if (!File.ReadAllLines(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf").Contains(imeNovogPica + "=" + cena))
                 {
-                    File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf", "\n" + imeNovogPica + "=" + cena);
+                    if(File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf").EndsWith(Environment.NewLine))
+                    {
+                        File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf", imeNovogPica + "=" + cena);
+                    }
+                    else File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf", "\n" + imeNovogPica + "=" + cena);
                 }
                 else
                 {
