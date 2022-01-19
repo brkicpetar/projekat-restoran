@@ -107,6 +107,7 @@ Unos novog jela:
                 Console.ResetColor();
                 Console.CursorVisible = true;
                 Console.Write("Ime jela: ");
+                Console.InputEncoding = Encoding.UTF8;
                 string imeNovogJela = Console.ReadLine();
                 Console.Write("Cena u dinarima(bez PDV-a): ");
                 string cena = Console.ReadLine();
@@ -202,6 +203,7 @@ ________________________________________________________________________________
 ", item);
             Console.Write("Novo ime jela (ukoliko ne želite da promenite ime, ostavite prazno): ");
             Console.CursorVisible = true;
+            Console.InputEncoding = Encoding.UTF8;
             string novoIme = Console.ReadLine();
             if (novoIme == "") novoIme = item.Split('=')[0];
             Console.Write("Nova cena jela (ukoliko ne želite da promenite cenu, ostavite prazno): ");
@@ -299,6 +301,7 @@ Unos novog pića:
                 Console.ResetColor();
                 Console.CursorVisible = true;
                 Console.Write("Ime pića: ");
+                Console.InputEncoding = Encoding.UTF8;
                 string imeNovogPica = Console.ReadLine();
                 Console.Write("Cena u dinarima(bez PDV-a): ");
                 string cena = Console.ReadLine();
@@ -392,6 +395,7 @@ ________________________________________________________________________________
 
 {0}:
 ", item);
+            Console.InputEncoding = Encoding.UTF8;
             Console.Write("Novo ime pića (ukoliko ne želite da promenite ime, ostavite prazno): ");
             Console.CursorVisible = true;
             string novoIme = Console.ReadLine();
@@ -507,7 +511,7 @@ Da li ste sigurni da želite da se vratite na glavni meni?
                     daLiJePrijavljeno = false;
                     new proFeatures().Init();
                 }
-                else if (k.Key == ConsoleKey.Escape) izabraniIndex = meni.PokreniMeni();
+                else if (k.Key == ConsoleKey.Escape) Init();
             }
             else if (izabraniIndex == 2)
             {

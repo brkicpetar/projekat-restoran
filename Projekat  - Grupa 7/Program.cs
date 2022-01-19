@@ -10,6 +10,7 @@ namespace Projekat____Grupa_7
             Console.CursorVisible = false;
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
             Console.Title = "Projekat \"Aplikacija za Restoran\" - Grupa 7";
             Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       

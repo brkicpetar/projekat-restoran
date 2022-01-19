@@ -61,7 +61,7 @@ namespace Projekat____Grupa_7.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\SKOLA\Desktop\Projekat - pomoćni fajlovi\.
+        ///   Looks up a localized string similar to C:\Projekat - Aplikacija za Restoran - pomocni fajlovi\.
         /// </summary>
         internal static string LokacijaPomocnihFajlova {
             get {
