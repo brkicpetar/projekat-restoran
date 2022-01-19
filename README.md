@@ -11,9 +11,7 @@ Projekat "**Aplikacija za restoran**" je namenjen da pomogne u radu restorana i 
 * rezervacija stolova
 * naručivanje preko telefona
 * knjiga utisaka
-* provera dostupnosti sastojaka u skladištu
-* manipulisanje nabavkama
-
+* izmena jelovnika, karte pića, brisanje podataka iz knjige utisaka...
 
 #
 ### English
@@ -27,5 +25,4 @@ Project "**Restaurant Application**" is intended for use in restaurants and caf�
 * table reservations
 * phone ordering
 * guestbook
-* check availability of ingredients
-* manipulating with ingredient purchases
+* management of restaurant (food and beverages menu changes, guestbook cleaning)
