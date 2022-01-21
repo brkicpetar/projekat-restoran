@@ -64,7 +64,11 @@ Da li ste sigurni da želite da napustite aplikaciju?
                 proMenadzer m = new proMenadzer();
                 m.Init();
             }
-            
+            else if (IzabraniIndex == 2)
+            {
+                proNarudzbine r = new proNarudzbine();
+                r.Init();
+            }
 
         }
     }
