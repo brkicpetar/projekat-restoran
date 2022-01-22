@@ -69,6 +69,11 @@ Da li ste sigurni da želite da napustite aplikaciju?
                 proNarudzbine r = new proNarudzbine();
                 r.Init();
             }
+            else if (IzabraniIndex == 1)
+            {
+                proKartaPica k = new proKartaPica();
+                k.Init();
+            }
 
         }
     }
