@@ -109,10 +109,25 @@ Unos novog jela:
                 Console.Write("Ime jela: ");
                 Console.InputEncoding = Encoding.UTF8;
                 string imeNovogJela = Console.ReadLine();
+                while (imeNovogJela == "")
+                {
+                    Console.Write("Podaci nisu uneti! Molim unesite ime novog jela: ");
+                    imeNovogJela = Console.ReadLine();
+                }
                 Console.Write("Cena u dinarima(bez PDV-a): ");
                 string cena = Console.ReadLine();
+                while (!int.TryParse(cena, out int tempInt) || tempInt == 0)
+                {
+                    Console.Write("Podaci nisu uneti! Molim unesite cenu: ");
+                    cena = Console.ReadLine();
+                }
                 Console.WriteLine("Detalji o jelu (pisati sve rečenice u jednom redu, biće prikazane svaka posebno):");
                 string[] detaljiOJelu = Console.ReadLine().Split('.');
+                while (detaljiOJelu.Length == 0 || detaljiOJelu[0] == "")
+                {
+                    Console.Write("Podaci nisu uneti! Molim unesite detalje: ");
+                    detaljiOJelu = Console.ReadLine().Split('.');
+                }
                 Console.CursorVisible = false;
                 for (int i = 0; i < detaljiOJelu.Length; i++)
                 {
@@ -303,10 +318,24 @@ Unos novog pića:
                 Console.Write("Ime pića: ");
                 Console.InputEncoding = Encoding.UTF8;
                 string imeNovogPica = Console.ReadLine();
+                while(imeNovogPica == "")
+                {
+                    Console.WriteLine("Podaci nisu uneti! Molim unesite ime novog jela: ");
+                }
                 Console.Write("Cena u dinarima(bez PDV-a): ");
                 string cena = Console.ReadLine();
+                while(!int.TryParse(cena, out int tempInt) || tempInt == 0)
+                {
+                    Console.WriteLine("Podaci nisu uneti! Molim unesite cenu: ");
+                    cena = Console.ReadLine();
+                }
                 Console.WriteLine("Detalji o piću (pisati sve rečenice u jednom redu, biće prikazane svaka posebno):");
                 string[] detaljiOPicu = Console.ReadLine().Split('.');
+                while(detaljiOPicu.Length == 0 || detaljiOPicu[0] == "")
+                {
+                    Console.WriteLine("Podaci nisu uneti! Molim unesite detalje: ");
+                    detaljiOPicu = Console.ReadLine().Split('.');
+                }
                 Console.CursorVisible = false;
                 for (int i = 0; i < detaljiOPicu.Length; i++)
                 {
