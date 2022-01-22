@@ -69,10 +69,10 @@ Da li ste sigurni da želite da napustite aplikaciju?
                 proNarudzbine r = new proNarudzbine();
                 r.Init();
             }
-            else if (IzabraniIndex == 3)
+            else if (IzabraniIndex == 1)
             {
-                proRezervacija j = new proRezervacija();
-                j.Init();
+                proKartaPica k = new proKartaPica();
+                k.Init();
             }
 
         }
