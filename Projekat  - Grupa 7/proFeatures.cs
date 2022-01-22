@@ -74,6 +74,12 @@ Da li ste sigurni da želite da napustite aplikaciju?
                 proKartaPica k = new proKartaPica();
                 k.Init();
             }
+            else if (IzabraniIndex == 3)
+            {
+                proRezervacija j = new proRezervacija();
+                j.Init();
+            }
+            
 
         }
     }
