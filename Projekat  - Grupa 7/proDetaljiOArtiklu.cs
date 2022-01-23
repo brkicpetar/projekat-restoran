@@ -26,8 +26,8 @@ namespace Projekat____Grupa_7
 
 _______________________________________________________________________________________________________________
 
-{0}:
-", Artikal.Split('=')[0]);
+{0} - cena: {1} RSD
+", Artikal.Split('=')[0], Artikal.Split('=')[1]);
             Console.ResetColor();
             for (int i = 0; i < lines.Length; i++)
             {
