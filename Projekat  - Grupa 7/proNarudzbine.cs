@@ -224,9 +224,16 @@ Zaključivanje računa:
                 double cena = cena_PDV * 1.11;
                 if (penzioner) cena *= 0.88;
                 else cena *= 1.2;
-                File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun" + (IzabraniSto + 1).ToString() + ".pf", 
+                string pdv = !penzioner ? (cena_PDV * 1.11 * 0.2).ToString() : "0";
+                string popust = penzioner ? (cena_PDV * 1.11 * 0.12).ToString() : "0";
+                File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
                     @"----------------------------
-Ukupna cena: " + cena.ToString("0.00") + " RSD");
+Cena bez PDV-a: " + cena_PDV + @" RSD
+PDV: " + pdv + @" RSD
+Popust: " + popust + @" RSD
+----------------------------
+Ukupna cena: " + cena.ToString("0.00") + @" RSD
+");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Uspešno zaključen račun. Dođite nam ponovo!");
                 System.Threading.Thread.Sleep(2500);
