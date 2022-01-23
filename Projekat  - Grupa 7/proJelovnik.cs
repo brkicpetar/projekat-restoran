@@ -38,7 +38,7 @@ Trenutno nema unetih jela u jelovnik. Kontaktirajte menadžera restorana!
             }
             else
             {
-                proDetaljiOArtiklu p = new proDetaljiOArtiklu();
+                proDetaljiOArtiklu p = new proDetaljiOArtiklu(0);
                 p.PrikaziDetalje(menuContent[IzabraniIndex]);
             }
         }

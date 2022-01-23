@@ -38,7 +38,7 @@ Trenutno nema unetih pića u kartu pića. Kontaktirajte menadžera restorana!
             }
             else
             {
-                proDetaljiOArtiklu p = new proDetaljiOArtiklu();
+                proDetaljiOArtiklu p = new proDetaljiOArtiklu(1);
                 p.PrikaziDetalje(menuContent[IzabraniIndex]);
             }
         }

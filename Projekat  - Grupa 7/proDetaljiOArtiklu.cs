@@ -5,6 +5,11 @@ namespace Projekat____Grupa_7
 {
     class proDetaljiOArtiklu
     {
+        private int meniKarta = -1;
+        public proDetaljiOArtiklu(int MeniIliKartaPica)
+        {
+            meniKarta = MeniIliKartaPica;
+        }
         public void PrikaziDetalje(string Artikal)
         {
             Console.Clear();
@@ -32,11 +37,20 @@ ________________________________________________________________________________
             Console.WriteLine();
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("Povratak na jelovnik");
+            if(meniKarta == 0) Console.WriteLine("Povratak na jelovnik");
+            else Console.WriteLine("Povratak na kartu pića");
             Console.ResetColor();
             while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }
-            proJelovnik p = new proJelovnik();
-            p.Init();
+            if(meniKarta == 0)
+            {
+                proJelovnik p = new proJelovnik();
+                p.Init();
+            }
+            else
+            {
+                proKartaPica p = new proKartaPica();
+                p.Init();
+            }
         }
     }
 }
