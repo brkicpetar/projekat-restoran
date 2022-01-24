@@ -48,12 +48,14 @@ Izaberite sto koji zelite da rezervisete:
             else
             {
                 Console.Write("Unesite ime na koje se rezervacija čuva: ");
+                Console.CursorVisible = true;
                 string ime = Console.ReadLine();
                 while (ime == "" && ime.Contains("=")) 
                 { 
                     Console.WriteLine("Ime nije uneto pravilno ili nije uneto uopšte, pokušajte ponovo: ");
                     ime = Console.ReadLine();
                 }
+                Console.CursorVisible = false;
                 File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + maxi [izabraniIndex] + ".pf", ime);
                 Console.WriteLine("Sto {0} je rezervisan na ime {1}" , maxi[izabraniIndex], ime );
                 System.Threading.Thread.Sleep(2597);

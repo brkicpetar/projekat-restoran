@@ -27,11 +27,24 @@ Odaberite opciju:
             int izabraniIndex = opcija.PokreniMeni();
             if(izabraniIndex == 0)
             {
-                Console.WriteLine();
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("Unesite ime: ");
+                Console.Write(@"                           _ _ _              _ _                    _____           _                        
+──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
+─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
+──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
+────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
+──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
+                    | |                       _/ |                                                            
+                    |_|                      |__/                                                             
+
+_______________________________________________________________________________________________________________
+
+Unesite ime:");
                 Console.ForegroundColor = ConsoleColor.White;
+                Console.CursorVisible = true;
                 string ime = Console.ReadLine();
+                Console.CursorVisible = false;
                 while (ime == "")
                 {
                     Console.Write("Pogrešno ste uneli. Unesite ponovo: ");

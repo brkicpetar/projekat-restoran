@@ -93,12 +93,14 @@ ________________________________________________________________________________
 Koliko {0} zelite da narucite: ", opcije[IzabraniIndex]);
                     int broj = -1;
                     Console.ForegroundColor = ConsoleColor.White;
+                    Console.CursorVisible = true;
                     while (!int.TryParse(Console.ReadLine(), out broj) || broj < 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Nije dobar unos. Pokušajte ponovo: ");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
+                    Console.CursorVisible = false;
                     if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf").Split('=').Length == 1) 
                     {
                         File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", "");
@@ -164,12 +166,14 @@ ________________________________________________________________________________
 Koliko {0} želite da naručite: ", opcije[IzabraniIndex]);
                     int broj = -1;
                     Console.ForegroundColor = ConsoleColor.White;
+                    Console.CursorVisible = true;
                     while (!int.TryParse(Console.ReadLine(), out broj) || broj < 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Nije dobar unos. Pokušajte ponovo: ");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
+                    Console.CursorVisible = false;
                     if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf").Split('=').Length == 1)
                     {
                         File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", "");
@@ -215,12 +219,14 @@ Zaključivanje računa:
                 bool penzioner = false;
                 Console.Write("Da li je osoba penzioner? ");
                 Console.ForegroundColor = ConsoleColor.White;
+                Console.CursorVisible = true;
                 string a = Console.ReadLine();
                 while (a != "da" && a != "ne")
                 {
                     Console.WriteLine("Nije dobar upis.");
                     a = Console.ReadLine();
                 }
+                Console.CursorVisible = false;
                 penzioner = a == "da";
                 double cena = cena_PDV * 1.11;
                 if (penzioner) cena *= 0.88;
