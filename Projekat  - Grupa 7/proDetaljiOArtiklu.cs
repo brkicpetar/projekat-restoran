@@ -45,11 +45,13 @@ ________________________________________________________________________________
             {
                 proJelovnik p = new proJelovnik();
                 p.Init();
+                return;
             }
             else
             {
                 proKartaPica p = new proKartaPica();
                 p.Init();
+                return;
             }
         }
     }

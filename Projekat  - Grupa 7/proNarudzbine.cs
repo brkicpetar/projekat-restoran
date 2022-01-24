@@ -30,6 +30,7 @@ Odaberite sto za koji je narudžbina:
             {
                 proFeatures f = new proFeatures();
                 f.Init();
+                return;
             }
             line34:
             proMenu OdabirOpcije = new proMenu(new string[] { "Jelovnik", "Karta pića", "Zakljuci racun", "Povratak na odabir stolova" }, @"                           _ _ _              _ _                    _____           _                        
@@ -243,11 +244,13 @@ Ukupna cena: " + cena.ToString("0.00") + @" RSD
                 File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun" + (IzabraniSto + 1).ToString() + ".pf", "");
                 proFeatures f = new proFeatures();
                 f.Init();
+                return;
             }
             else if (IzabranaOpcija == 3)
             {
                 proNarudzbine n = new proNarudzbine();
                 n.Init();
+                return;
             }
         }
     }

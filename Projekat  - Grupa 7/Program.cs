@@ -35,6 +35,7 @@ namespace Projekat____Grupa_7
             Console.ResetColor();
             proFeatures p = new proFeatures();
             p.Init();
+            return;
         }
     }
 }

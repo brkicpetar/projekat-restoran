@@ -62,8 +62,7 @@ KNJIGA UTISAKA:
                 while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }
                 proKnjigaUtisaka knj = new proKnjigaUtisaka();
                 knj.Init();
-
-
+                return;
             }
             else if (izabraniIndex == 1)
             {
@@ -118,7 +117,7 @@ UNOS UTISAKA
                 System.Threading.Thread.Sleep(2730);
                 proKnjigaUtisaka knj = new proKnjigaUtisaka();
                 knj.Init();
-
+                return;
 
             }
 

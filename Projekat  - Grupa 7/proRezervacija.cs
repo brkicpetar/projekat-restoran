@@ -43,6 +43,7 @@ Izaberite sto koji zelite da rezervisete:
             {
                 proFeatures j = new proFeatures();
                 j.Init();
+                return;
             }
             else
             {
@@ -58,6 +59,7 @@ Izaberite sto koji zelite da rezervisete:
                 System.Threading.Thread.Sleep(2597);
                 proFeatures j = new proFeatures();
                 j.Init();
+                return;
             }
 
             

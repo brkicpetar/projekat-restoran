@@ -35,6 +35,7 @@ Trenutno nema unetih jela u jelovnik. Kontaktirajte menadžera restorana!
             {
                 proFeatures p = new proFeatures();
                 p.Init();
+                return;
             }
             else
             {

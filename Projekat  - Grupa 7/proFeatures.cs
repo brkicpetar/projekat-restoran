@@ -58,36 +58,43 @@ Da li ste sigurni da želite da napustite aplikaciju?
             {
                 proJelovnik p = new proJelovnik();
                 p.Init();
+                return;
             }
             else if (IzabraniIndex == 6)
             {
                 proMenadzer m = new proMenadzer();
                 m.Init();
+                return;
             }
             else if (IzabraniIndex == 2)
             {
                 proNarudzbine r = new proNarudzbine();
                 r.Init();
+                return;
             }
             else if (IzabraniIndex == 1)
             {
                 proKartaPica k = new proKartaPica();
                 k.Init();
+                return;
             }
             else if (IzabraniIndex == 3)
             {
                 proRezervacija j = new proRezervacija();
                 j.Init();
+                return;
             }
             else if (IzabraniIndex == 5)
             {
                 proKnjigaUtisaka n = new proKnjigaUtisaka();
                 n.Init();
+                return;
             }
             else if (IzabraniIndex == 4)
             {
                 proTelefon u = new proTelefon();
                 u.Init();
+                return;
             }
 
         }

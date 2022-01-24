@@ -65,6 +65,7 @@ Trenutno nema unetih jela u jelovnik. Kontaktirajte menadžera restorana!
                 {
                     proTelefon f = new proTelefon();
                     f.Init();
+                    return;
                 }
                 else
                 {
@@ -136,6 +137,7 @@ Izaberite porudzbinu za preuzimanje:
                 {
                     proTelefon g = new proTelefon();
                     g.Init();
+                    return;
                 }
                 string ime = listaFajlova[izabranaPorudzbina].Split(' ')[1].Trim();
                 string date = listaFajlova[izabranaPorudzbina].Split(' ')[2].Trim() + " " + Path.GetFileNameWithoutExtension(listaFajlova[izabranaPorudzbina]).Split(' ')[3].Trim(); 
@@ -169,13 +171,14 @@ Ukupna cena: " + cena.ToString("0.00") + @" RSD
                 File.Delete(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun " + ime + " " + date + ".pf");
                 proFeatures f = new proFeatures();
                 f.Init();
-
+                return;
             }
 
             else if (izabraniIndex == 2)
             {
                 proFeatures f = new proFeatures();
                 f.Init();
+                return;
             }
         }
     }

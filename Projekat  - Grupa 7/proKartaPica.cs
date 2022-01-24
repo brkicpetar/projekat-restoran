@@ -35,6 +35,7 @@ Trenutno nema unetih pića u kartu pića. Kontaktirajte menadžera restorana!
             {
                 proFeatures p = new proFeatures();
                 p.Init();
+                return;
             }
             else
             {

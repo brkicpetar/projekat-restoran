@@ -59,6 +59,7 @@ Izmena jelovnika:
             {
                 Console.Clear();
                 Init();
+                return;
             }
             else if (izabranaStavka == 2)
             {
@@ -268,6 +269,7 @@ Izmena karte pića:
             {
                 Console.Clear();
                 Init();
+                return;
             }
             else if (izabranaStavka == 2)
             {
@@ -474,6 +476,7 @@ ________________________________________________________________________________
             if (k.Key == ConsoleKey.Escape)
             {
                 new proFeatures().Init();
+                return;
             }
             IspisNaslova();
             Console.ResetColor();
@@ -491,6 +494,7 @@ ________________________________________________________________________________
                 System.Threading.Thread.Sleep(2000);
                 Console.Clear();
                 Init();
+                return;
             }
             Console.WriteLine("Prijava uspešna!");
             System.Threading.Thread.Sleep(1000);
@@ -539,8 +543,13 @@ Da li ste sigurni da želite da se vratite na glavni meni?
                 {
                     daLiJePrijavljeno = false;
                     new proFeatures().Init();
+                    return;
                 }
-                else if (k.Key == ConsoleKey.Escape) Init();
+                else if (k.Key == ConsoleKey.Escape)
+                {
+                    Init();
+                    return;
+                }
             }
             else if (izabraniIndex == 2)
             {
@@ -565,11 +574,13 @@ Da li ste sigurni da želite da obrišete sadržaj knjige utisaka? Ova radnja je
                 {
                     File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf", "");
                     Init();
+                    return;
                 }
                 else if (k.Key == ConsoleKey.Escape)
                 {
                     Console.Clear();
                     Init();
+                    return;
                 }
             }
             else if(izabraniIndex == 0)
