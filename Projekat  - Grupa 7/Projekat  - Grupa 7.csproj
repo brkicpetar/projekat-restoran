@@ -59,6 +59,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="proRezervacija.cs" />
+    <Compile Include="proTelefon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

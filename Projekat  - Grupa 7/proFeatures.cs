@@ -84,6 +84,11 @@ Da li ste sigurni da želite da napustite aplikaciju?
                 proKnjigaUtisaka n = new proKnjigaUtisaka();
                 n.Init();
             }
+            else if (IzabraniIndex == 4)
+            {
+                proTelefon u = new proTelefon();
+                u.Init();
+            }
 
         }
     }
