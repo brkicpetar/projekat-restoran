@@ -47,6 +47,7 @@
     <Compile Include="proFeatures.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="proKartaPica.cs" />
+    <Compile Include="proKnjigaUtisaka.cs" />
     <Compile Include="proMenadzer.cs" />
     <Compile Include="proJelovnik.cs" />
     <Compile Include="proMenu.cs" />

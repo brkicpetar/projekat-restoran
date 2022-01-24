@@ -79,7 +79,11 @@ Da li ste sigurni da želite da napustite aplikaciju?
                 proRezervacija j = new proRezervacija();
                 j.Init();
             }
-            
+            else if (IzabraniIndex == 5)
+            {
+                proKnjigaUtisaka n = new proKnjigaUtisaka();
+                n.Init();
+            }
 
         }
     }
