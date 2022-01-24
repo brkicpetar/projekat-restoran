@@ -12,7 +12,7 @@ namespace Projekat____Grupa_7
         public void Init()
         {
             Console.Clear();
-            proMenu OdabirStola = new proMenu(new string[] {"Prvi sto", "Drugi sto", "Treci sto", "Cetvrti sto", "Peti sto", "Povratak na glavni meni"}, @"                           _ _ _              _ _                    _____           _                        
+            proMenu OdabirStola = new proMenu(new string[] {"Prvi sto", "Drugi sto", "Treci sto", "Četvrti sto", "Peti sto", "Povratak na glavni meni"}, @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -33,7 +33,7 @@ Odaberite sto za koji je narudžbina:
                 return;
             }
             line34:
-            proMenu OdabirOpcije = new proMenu(new string[] { "Jelovnik", "Karta pića", "Zakljuci racun", "Povratak na odabir stolova" }, @"                           _ _ _              _ _                    _____           _                        
+            proMenu OdabirOpcije = new proMenu(new string[] { "Jelovnik", "Karta pića", "Zaključi račun", "Povratak na odabir stolova" }, @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -96,7 +96,7 @@ Koliko {0} zelite da narucite: ", opcije[IzabraniIndex]);
                     while (!int.TryParse(Console.ReadLine(), out broj) || broj < 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("Nije dobar unos. Pokusajte ponovo: ");
+                        Console.Write("Nije dobar unos. Pokušajte ponovo: ");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
                     if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf").Split('=').Length == 1) 
@@ -161,13 +161,13 @@ Trenutno nema unetih pića u kartu pića. Kontaktirajte menadžera restorana!
 
 _______________________________________________________________________________________________________________
 
-Koliko {0} zelite da narucite: ", opcije[IzabraniIndex]);
+Koliko {0} želite da naručite: ", opcije[IzabraniIndex]);
                     int broj = -1;
                     Console.ForegroundColor = ConsoleColor.White;
                     while (!int.TryParse(Console.ReadLine(), out broj) || broj < 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("Nije dobar unos. Pokusajte ponovo: ");
+                        Console.Write("Nije dobar unos. Pokušajte ponovo: ");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
                     if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf").Split('=').Length == 1)
@@ -225,12 +225,14 @@ Zaključivanje računa:
                 double cena = cena_PDV * 1.11;
                 if (penzioner) cena *= 0.88;
                 else cena *= 1.2;
-                string pdv = !penzioner ? (cena_PDV * 1.11 * 0.2).ToString() : "0";
-                string popust = penzioner ? (cena_PDV * 1.11 * 0.12).ToString() : "0";
+                string pdv = !penzioner ? (cena_PDV * 1.11 * 0.2).ToString("0.00") : "0.00";
+                string popust = penzioner ? (cena_PDV * 1.11 * 0.12).ToString("0.00") : "0.00";
+                string usluga = (cena_PDV * 1.11).ToString("0.00");
                 File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
                     @"----------------------------
 Cena bez PDV-a: " + cena_PDV + @" RSD
 PDV: " + pdv + @" RSD
+Usluga: " + usluga + @" RSD
 Popust: " + popust + @" RSD
 ----------------------------
 Ukupna cena: " + cena.ToString("0.00") + @" RSD

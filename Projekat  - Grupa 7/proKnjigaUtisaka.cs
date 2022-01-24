@@ -13,7 +13,7 @@ namespace Projekat____Grupa_7
 
         public void Init()
         {
-            string[] opcije = new string[] { "Procitaj knjigu utisaka", "Unesite utiske", "Povratak na glavni meni" };
+            string[] opcije = new string[] { "Pročitaj knjigu utisaka", "Unesite utiske", "Povratak na glavni meni" };
 
 
             proMenu Knjiga = new proMenu(opcije.ToArray(), @"                           _ _ _              _ _                    _____           _                        
@@ -27,6 +27,7 @@ namespace Projekat____Grupa_7
 
 _______________________________________________________________________________________________________________
 
+Knjiga utisaka:
 ");
 
             int izabraniIndex = Knjiga.PokreniMeni();
@@ -35,6 +36,7 @@ ________________________________________________________________________________
             if (izabraniIndex == 0)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
@@ -46,11 +48,14 @@ ________________________________________________________________________________
 
 _______________________________________________________________________________________________________________
 
-KNJIGA UTISAKA:
+Knjiga utisaka
 "
 );
                 if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf") == "")
-                { Console.WriteLine("Knjiga utisaka je prazna"); }
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("Knjiga utisaka je prazna"); 
+                }
                 else
                 {
                     Console.WriteLine(File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf"));
@@ -67,6 +72,7 @@ KNJIGA UTISAKA:
             else if (izabraniIndex == 1)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
@@ -78,22 +84,29 @@ KNJIGA UTISAKA:
 
 _______________________________________________________________________________________________________________
 
-UNOS UTISAKA
+Unos utisaka:
 "
 );
                 Console.WriteLine("Upisati utiske (pisati sve rečenice u jednom redu, biće prikazane svaka posebno):");
                 Console.CursorVisible = true;
+                Console.ForegroundColor = ConsoleColor.White;
                 string[] utisak = Console.ReadLine().Split('.');
                 while (utisak.Length == 0 || utisak[0] == "")
                 {
-                    Console.Write("Podaci nisu uneti! Molim unesite utiske: ");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("Podaci nisu uneti! Molimo unesite utiske: ");
+                    Console.ForegroundColor = ConsoleColor.White;
                     utisak = Console.ReadLine().Split('.');
                 }
-                Console.Write("Unesite Vase ime: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("Unesite Vaše ime: ");
+                Console.ForegroundColor = ConsoleColor.White;
                 string ime1 = Console.ReadLine();
                 while (ime1 == "" )
                 {
-                    Console.WriteLine("Ime nije uneto pravilno ili nije uneto uopste, pokusajte ponovo: ");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("Ime nije uneto pravilno ili nije uneto uopšte, pokušajte ponovo: ");
+                    Console.ForegroundColor = ConsoleColor.White;
                     ime1 = Console.ReadLine();
                 }
 
@@ -113,7 +126,7 @@ UNOS UTISAKA
 
             
 
-                Console.WriteLine("Utisak uspesno unet");
+                Console.WriteLine("Utisak uspešno unet");
                 System.Threading.Thread.Sleep(2730);
                 proKnjigaUtisaka knj = new proKnjigaUtisaka();
                 knj.Init();

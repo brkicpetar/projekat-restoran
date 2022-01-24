@@ -11,7 +11,7 @@ namespace Projekat____Grupa_7
     {
         public void Init()
         {
-            proMenu opcija = new proMenu(new string[] { "Napravi novu porudzbinu", "Preuzmi i plati narucenu porudzbinu", "Povratak na glavni meni" }, @"                           _ _ _              _ _                    _____           _                        
+            proMenu opcija = new proMenu(new string[] { "Napravi novu porudžbinu", "Preuzmi i plati naručenu porudžbinu", "Povratak na glavni meni" }, @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -27,11 +27,14 @@ Odaberite opciju:
             int izabraniIndex = opcija.PokreniMeni();
             if(izabraniIndex == 0)
             {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("Unesite ime: ");
+                Console.ForegroundColor = ConsoleColor.White;
                 string ime = Console.ReadLine();
                 while (ime == "")
                 {
-                    Console.Write("Pogresno ste uneli. Unesite ponovo: ");
+                    Console.Write("Pogrešno ste uneli. Unesite ponovo: ");
                     ime = Console.ReadLine();
                 }
                 string date = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
@@ -82,13 +85,13 @@ Trenutno nema unetih jela u jelovnik. Kontaktirajte menadžera restorana!
 
 _______________________________________________________________________________________________________________
 
-Koliko {0} zelite da narucite: ", opcije[IzabraniIndex]);
+Koliko {0} zelite da naručite: ", opcije[IzabraniIndex]);
                     int broj = -1;
                     Console.ForegroundColor = ConsoleColor.White;
                     while (!int.TryParse(Console.ReadLine(), out broj) || broj < 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("Nije dobar unos. Pokusajte ponovo: ");
+                        Console.Write("Nije dobar unos. Pokušajte ponovo: ");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
                     

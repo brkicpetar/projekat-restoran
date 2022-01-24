@@ -115,11 +115,11 @@ Unos novog jela:
                     Console.Write("Podaci nisu uneti! Molim unesite ime novog jela: ");
                     imeNovogJela = Console.ReadLine();
                 }
-                Console.Write("Cena u dinarima(bez PDV-a): ");
+                Console.Write("Cena u dinarima (bez PDV-a): ");
                 string cena = Console.ReadLine();
                 while (!int.TryParse(cena, out int tempInt) || tempInt == 0)
                 {
-                    Console.Write("Podaci nisu uneti! Molim unesite cenu: ");
+                    Console.Write("Podaci nisu uneti! Molimo unesite cenu: ");
                     cena = Console.ReadLine();
                 }
                 Console.WriteLine("Detalji o jelu (pisati sve rečenice u jednom redu, biće prikazane svaka posebno):");
@@ -322,20 +322,20 @@ Unos novog pića:
                 string imeNovogPica = Console.ReadLine();
                 while(imeNovogPica == "")
                 {
-                    Console.WriteLine("Podaci nisu uneti! Molim unesite ime novog jela: ");
+                    Console.WriteLine("Podaci nisu uneti! Molimo unesite ime novog jela: ");
                 }
-                Console.Write("Cena u dinarima(bez PDV-a): ");
+                Console.Write("Cena u dinarima (bez PDV-a): ");
                 string cena = Console.ReadLine();
                 while(!int.TryParse(cena, out int tempInt) || tempInt == 0)
                 {
-                    Console.WriteLine("Podaci nisu uneti! Molim unesite cenu: ");
+                    Console.WriteLine("Podaci nisu uneti! Molimo unesite cenu: ");
                     cena = Console.ReadLine();
                 }
                 Console.WriteLine("Detalji o piću (pisati sve rečenice u jednom redu, biće prikazane svaka posebno):");
                 string[] detaljiOPicu = Console.ReadLine().Split('.');
                 while(detaljiOPicu.Length == 0 || detaljiOPicu[0] == "")
                 {
-                    Console.WriteLine("Podaci nisu uneti! Molim unesite detalje: ");
+                    Console.WriteLine("Podaci nisu uneti! Molimo unesite detalje: ");
                     detaljiOPicu = Console.ReadLine().Split('.');
                 }
                 Console.CursorVisible = false;
@@ -359,7 +359,7 @@ Unos novog pića:
                 }
                 File.WriteAllLines(Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + imeNovogPica + "=" + cena + ".pf", detaljiOPicu);
                 Console.WriteLine("");
-                Console.WriteLine("Novo piće dodato u kartu pića!");
+                Console.WriteLine("Novo piće je dodato u kartu pića!");
                 System.Threading.Thread.Sleep(1000);
                 IzmenaKartePica();
             }

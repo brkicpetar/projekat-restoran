@@ -47,11 +47,11 @@ Izaberite sto koji zelite da rezervisete:
             }
             else
             {
-                Console.Write("Unesite ime na koje se rezervacija cuva: ");
+                Console.Write("Unesite ime na koje se rezervacija čuva: ");
                 string ime = Console.ReadLine();
                 while (ime == "" && ime.Contains("=")) 
                 { 
-                    Console.WriteLine("Ime nije uneto pravilno ili nije uneto uopste, pokusajte ponovo: ");
+                    Console.WriteLine("Ime nije uneto pravilno ili nije uneto uopšte, pokušajte ponovo: ");
                     ime = Console.ReadLine();
                 }
                 File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + maxi [izabraniIndex] + ".pf", ime);
