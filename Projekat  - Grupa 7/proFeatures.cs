@@ -57,7 +57,7 @@ Da li ste sigurni da želite da napustite aplikaciju?
             else if (IzabraniIndex == 0)
             {
                 proJelovnik p = new proJelovnik();
-                p.Init();
+                p.Init("");
                 return;
             }
             else if (IzabraniIndex == 6)
@@ -75,7 +75,7 @@ Da li ste sigurni da želite da napustite aplikaciju?
             else if (IzabraniIndex == 1)
             {
                 proKartaPica k = new proKartaPica();
-                k.Init();
+                k.Init("");
                 return;
             }
             else if (IzabraniIndex == 3)
