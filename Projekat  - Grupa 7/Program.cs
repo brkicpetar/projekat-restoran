@@ -27,7 +27,7 @@ namespace Projekat____Grupa_7
             for (int i = 0; i < 100; i++)
             {
                 Console.Write("║");
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(10);
             }
             System.Threading.Thread.Sleep(1500);
 

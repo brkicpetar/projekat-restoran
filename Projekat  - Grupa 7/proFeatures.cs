@@ -69,7 +69,7 @@ Da li ste sigurni da želite da napustite aplikaciju?
             else if (IzabraniIndex == 2)
             {
                 proNarudzbine r = new proNarudzbine();
-                r.Init();
+                r.Init("");
                 return;
             }
             else if (IzabraniIndex == 1)

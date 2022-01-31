@@ -9,7 +9,7 @@ namespace Projekat____Grupa_7
 {
     class proNarudzbine
     {
-        public void Init()
+        public void Init(string kat)
         {
             Console.Clear();
             proMenu OdabirStola = new proMenu(new string[] {"Prvi sto", "Drugi sto", "Treci sto", "Četvrti sto", "Peti sto", "Povratak na glavni meni"}, @"                           _ _ _              _ _                    _____           _                        
@@ -49,15 +49,15 @@ Odaberite opciju:
             int IzabranaOpcija = OdabirOpcije.PokreniMeni();
             if (IzabranaOpcija == 0) //jelovnik
             {
-                string[] menuContent = File.ReadAllLines(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf");
-                string[] opcije = new string[menuContent.Length + 1];
-                for (int i = 0; i < menuContent.Length; i++)
+            Line10:
+                string[] kategorije1 = Directory.GetDirectories(Properties.Resources.LokacijaPomocnihFajlova + "Jelovnik");
+                string[] opcije1 = new string[kategorije1.Length + 1];
+                for (int i = 0; i < kategorije1.Length; i++)
                 {
-                    opcije[i] = menuContent[i].Split('=')[0];
+                    opcije1[i] = Path.GetFileName(kategorije1[i]).Split(new string[] { ". " }, StringSplitOptions.None)[1];
                 }
-                opcije[menuContent.Length] = "Povratak na odabir opcija";
-                Console.OutputEncoding = System.Text.Encoding.UTF8;
-                proMenu meni = new proMenu(opcije, @"                           _ _ _              _ _                    _____           _                        
+                opcije1[kategorije1.Length] = "Povratak na glavni meni";
+                proMenu meniKategorija = new proMenu(opcije1, @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -69,17 +69,29 @@ Odaberite opciju:
 _______________________________________________________________________________________________________________
 
 Jelovnik:
-" + (opcije.Length == 1 ? @"
+" + (opcije1.Length == 1 ? @"
 Trenutno nema unetih jela u jelovnik. Kontaktirajte menadžera restorana!
 " : ""));
-                int IzabraniIndex = meni.PokreniMeni();
-                if (IzabraniIndex == menuContent.Length)
-                    goto line34;
-                else
+                int izabranaKategorija = -1;
+                if (kat == "") izabranaKategorija = meniKategorija.PokreniMeni();
+                else izabranaKategorija = Array.IndexOf(opcije1, kat.Split(new string[] { ". " }, StringSplitOptions.None)[1]);
+
+                if (izabranaKategorija == opcije1.Length - 1)
                 {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write(@"                           _ _ _              _ _                    _____           _                        
+                    proFeatures f = new proFeatures();
+                    f.Init();
+                    return;
+                }
+                string kategorija = kategorije1[izabranaKategorija];
+                string[] jelaFolderi = Directory.GetDirectories(Properties.Resources.LokacijaPomocnihFajlova + @"Jelovnik\" + Path.GetFileName(kategorija));
+                string[] opcije2 = new string[jelaFolderi.Length + 2];
+                for (int i = 0; i < jelaFolderi.Length; i++)
+                {
+                    opcije2[i] = Path.GetFileName(jelaFolderi[i]);
+                }
+                opcije2[jelaFolderi.Length] = "Povratak na kategorije";
+                opcije2[jelaFolderi.Length + 1] = "Povratak na glavni meni";
+                proMenu meniJela = new proMenu(opcije2, @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -90,34 +102,21 @@ Trenutno nema unetih jela u jelovnik. Kontaktirajte menadžera restorana!
 
 _______________________________________________________________________________________________________________
 
-Koliko {0} zelite da narucite: ", opcije[IzabraniIndex]);
-                    int broj = -1;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.CursorVisible = true;
-                    while (!int.TryParse(Console.ReadLine(), out broj) || broj < 0)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("Nije dobar unos. Pokušajte ponovo: ");
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
-                    Console.CursorVisible = false;
-                    if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf").Split('=').Length == 1) 
-                    {
-                        File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", "");
-                    }
-                    if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf") == "")
-                    {
-                        File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", menuContent[IzabraniIndex] + "=" + broj + "\n");
-                        File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun" + (IzabraniSto + 1).ToString() + ".pf", opcije[IzabraniIndex] + ", " + broj + "\n");
-                    }
-                    else 
-                    {
-                        File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", menuContent[IzabraniIndex] + "=" + broj + "\n");
-                        File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun" + (IzabraniSto + 1).ToString() + ".pf", opcije[IzabraniIndex] + ", " + broj + "\n");
-                    }
-                    Console.WriteLine("Uspešno dodato na račun.");
-                    System.Threading.Thread.Sleep(2500);
-                    goto line34;
+Jelovnik - " + opcije1[izabranaKategorija] + @":
+" + (opcije2.Length == 1 ? @"
+Trenutno nema unetih jela u jelovnik. Kontaktirajte menadžera restorana!
+" : ""));
+                int izabranoJelo = meniJela.PokreniMeni();
+                if (izabranoJelo == opcije2.Length - 2)
+                {
+                    kat = "";
+                    goto Line10;
+                }
+                else if (izabranoJelo == opcije2.Length - 1)
+                {
+                    proFeatures f = new proFeatures();
+                    f.Init();
+                    return;
                 }
             }
             else if (IzabranaOpcija == 1) 
@@ -257,7 +256,7 @@ Ukupna cena: " + cena.ToString("0.00") + @" RSD
             else if (IzabranaOpcija == 3)
             {
                 proNarudzbine n = new proNarudzbine();
-                n.Init();
+                n.Init("");
                 return;
             }
         }
