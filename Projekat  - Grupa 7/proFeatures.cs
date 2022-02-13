@@ -24,9 +24,9 @@ namespace Projekat____Grupa_7
 ──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
                     | |                       _/ |                                                            
                     |_|                      |__/                                                             
-
+ 
 _______________________________________________________________________________________________________________
-
+ 
 Glavni meni:
 ");
             int IzabraniIndex = meni.PokreniMeni();
@@ -43,9 +43,9 @@ Glavni meni:
 ──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
                     | |                       _/ |                                                            
                     |_|                      |__/                                                             
-
+ 
 _______________________________________________________________________________________________________________
-
+ 
 Da li ste sigurni da želite da napustite aplikaciju?
 ");
                 Console.WriteLine("Pritisnite dugme ENTER ukoliko želite, u suprotnom pritisnite dugme ESC");
@@ -69,7 +69,7 @@ Da li ste sigurni da želite da napustite aplikaciju?
             else if (IzabraniIndex == 2)
             {
                 proNarudzbine r = new proNarudzbine();
-                r.Init("");
+                r.Init("", -1, -1);
                 return;
             }
             else if (IzabraniIndex == 1)

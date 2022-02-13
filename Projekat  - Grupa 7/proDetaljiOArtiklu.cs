@@ -24,24 +24,24 @@ namespace Projekat____Grupa_7
 ──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
                     | |                       _/ |                                                            
                     |_|                      |__/                                                             
-
+ 
 _______________________________________________________________________________________________________________
-
+ 
 {0} - cena (bez PDV-a): {1} RSD
-", Artikal, File.ReadAllLines(glavno)[1]);
+", Artikal, int.Parse(File.ReadAllLines(glavno)[1]).ToString("0.00"));
             Console.ResetColor();
-            string ispis = File.ReadAllLines(glavno)[0] == "<==>" ? "Očekivana cena sa PDV-om i uslugom: " + (int.Parse(File.ReadAllLines(glavno)[1]) * 1.11 * 1.2).ToString("0.00") + " RSD":
+            string ispis = File.ReadAllLines(glavno)[0] == "<==>" ? "Očekivana cena sa PDV-om i uslugom: " + (int.Parse(File.ReadAllLines(glavno)[1]) * 1.11 * 1.2).ToString("0.00") + " RSD" :
                  (meniKarta == 0 ? "Sastojci: " : "Proizvođač: ") + File.ReadAllLines(glavno)[0] + "\n\nOčekivana cena sa PDV-om i uslugom: " + (int.Parse(File.ReadAllLines(glavno)[1]) * 1.11 * 1.2).ToString("0.00") + " RSD";
             Console.WriteLine(ispis);
 
             Console.WriteLine();
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            if(meniKarta == 0) Console.WriteLine("Povratak na kategorije jelovnika");
+            if (meniKarta == 0) Console.WriteLine("Povratak na kategorije jelovnika");
             else Console.WriteLine("Povratak na kategorije karte pića");
             Console.ResetColor();
             while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }
-            if(meniKarta == 0)
+            if (meniKarta == 0)
             {
                 proJelovnik p = new proJelovnik();
                 p.Init(Kategorija);
