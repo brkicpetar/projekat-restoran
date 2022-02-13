@@ -15,7 +15,7 @@ namespace Projekat____Grupa_7
         private void IspisNaslova()
         {
             Console.Clear();
-            Console.OutputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.Unicode;
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
@@ -37,7 +37,7 @@ Menadžer restorana - prijava na sistem:
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Clear();
             Console.ResetColor();
-            proMenu meniIzmenaJelovnika = new proMenu(new string[] { "Novo jelo", "Izmeni jelo", "Briši jelo", "Povratak na menadžerski meni" }, @"                           _ _ _              _ _                    _____           _                        
+            proMenu meniIzmenaJelovnika = new proMenu(new string[] { "Novo jelo", "Izmeni jelo", "Briši jelo", "Dodaj novu kategoriju", "Izmeni kategoriju", "Briši kategoriju", "Povratak na menadžerski meni" }, @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -50,20 +50,135 @@ ________________________________________________________________________________
 
 Izmena jelovnika:
 ");
-            List<string> jela = File.ReadAllLines(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf").ToList();
-            List<string> jelaMeni = new List<string>();
-            foreach (var item in jela) jelaMeni.Add(item);
-            jelaMeni.Add("Odustani od izmena");
-            int izabranaStavka = meniIzmenaJelovnika.PokreniMeni();
-            if (izabranaStavka == 3)
+            List<string> kategorijeSaPathovima = Directory.GetDirectories(Properties.Resources.LokacijaPomocnihFajlova + @"Jelovnik\").ToList();
+            List<string> kategorije = new List<string>();
+            List<string> kategorijeZaMeni = new List<string>();
+            foreach (var item in kategorijeSaPathovima)
+            {
+                kategorije.Add(Path.GetFileName(item).Trim());
+                kategorijeZaMeni.Add(Path.GetFileName(item).Split('.')[1].Trim());
+            }
+            kategorijeZaMeni.Add("Povratak na glavni meni");
+
+            int izabraniIndex = meniIzmenaJelovnika.PokreniMeni();
+            if (izabraniIndex == 6)
             {
                 Console.Clear();
                 Init();
                 return;
             }
-            else if (izabranaStavka == 2)
+            else if (izabraniIndex == 3)
             {
-                proMenu izborJelaZaBrisanje = new proMenu(jelaMeni.ToArray(), @"                           _ _ _              _ _                    _____           _                        
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(@"                           _ _ _              _ _                    _____           _                        
+──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
+─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
+──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
+────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
+──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
+                    | |                       _/ |                                                            
+                    |_|                      |__/                                                             
+
+_______________________________________________________________________________________________________________
+
+Unesite ime nove kategorije:");
+                Console.ResetColor();
+                Console.CursorVisible = true;
+                string imeKategorije = Console.ReadLine();
+                while (imeKategorije == "")
+                {
+                    Console.Write("Nije dobar unos! Pokušajte ponovo: ");
+                    imeKategorije = Console.ReadLine();
+                }
+                Console.CursorVisible = false;
+                string[] dirs = Directory.GetDirectories(Properties.Resources.LokacijaPomocnihFajlova + @"Jelovnik\");
+                string broj = (int.Parse(Path.GetFileName(dirs[dirs.Length - 1].Split('.')[0].Trim())) + 1).ToString();
+                Directory.CreateDirectory(Properties.Resources.LokacijaPomocnihFajlova + @"Jelovnik\" + broj + ". " + imeKategorije);
+                IzmenaJelovnika();
+            }
+            else if (izabraniIndex == 4)
+            {
+                proMenu izborKategorija = new proMenu(kategorijeZaMeni.ToArray(), @"                           _ _ _              _ _                    _____           _                        
+──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
+─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
+──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
+────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
+──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
+                    | |                       _/ |                                                            
+                    |_|                      |__/                                                             
+
+_______________________________________________________________________________________________________________
+
+Izaberite kategoriju za izmenu:
+");
+                int index = izborKategorija.PokreniMeni();
+                if (index == kategorije.Count)
+                {
+                    IzmenaJelovnika();
+                    return;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write(@"                           _ _ _              _ _                    _____           _                        
+──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
+─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
+──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
+────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
+──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
+                    | |                       _/ |                                                            
+                    |_|                      |__/                                                             
+
+_______________________________________________________________________________________________________________
+
+Novo ime za kategoriju {0}: ", kategorije[index]);
+                    Console.ResetColor();
+                    string novoIme = Console.ReadLine();
+                    string broj = kategorije[index].Split('.')[0].Trim();
+                    while (novoIme == "")
+                    {
+                        Console.Write("Nije dobar unos! Pokušajte ponovo: ");
+                        novoIme = Console.ReadLine();
+                    }
+                    Directory.Move(kategorijeSaPathovima[index], Properties.Resources.LokacijaPomocnihFajlova + @"Jelovnik\" + broj + ". " + novoIme);
+                    Console.WriteLine(Environment.NewLine + "Izmene uspešno unete!");
+                    System.Threading.Thread.Sleep(1500);
+                    IzmenaJelovnika();
+                }
+            }
+            else if (izabraniIndex == 5)
+            {
+                proMenu izborKategorija = new proMenu(kategorijeZaMeni.ToArray(), @"                           _ _ _              _ _                    _____           _                        
+──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
+─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
+──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
+────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
+──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
+                    | |                       _/ |                                                            
+                    |_|                      |__/                                                             
+
+_______________________________________________________________________________________________________________
+
+Izaberite kategoriju za izmenu:
+");
+                int index = izborKategorija.PokreniMeni();
+                if (index == kategorije.Count)
+                {
+                    IzmenaJelovnika();
+                    return;
+                }
+                else
+                {
+                    Directory.Delete(kategorijeSaPathovima[index], true);
+                    IzmenaJelovnika();
+                }
+            }
+            else if (izabraniIndex == 2)
+            {
+            Line72:
+                proMenu izborKategorije = new proMenu(kategorijeZaMeni.ToArray(), @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -76,23 +191,19 @@ ________________________________________________________________________________
 
 Izaberite jelo koje želite da obrišete iz jelovnika:
 ");
-                int jeloZaBrisanjeIndex = izborJelaZaBrisanje.PokreniMeni();
-                if (jeloZaBrisanjeIndex == jela.Count) IzmenaJelovnika();
+                int izabranaKategorija = izborKategorije.PokreniMeni();
+                if (izabranaKategorija == kategorije.Count)
+                {
+                    IzmenaJelovnika();
+                    return;
+                }
                 else
                 {
-                    string jeloZaBrisanjeString = jela[jeloZaBrisanjeIndex];
-                    jela.Remove(jeloZaBrisanjeString);
-                    File.Delete(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf");
-                    File.WriteAllLines(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf", jela.ToArray());
-                    File.Delete(Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + jeloZaBrisanjeString + ".pf");
-                    IzmenaJelovnika();
-                }
-            }
-            else if (izabranaStavka == 0)
-            {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
+                    List<string> jelaSaPathovima = Directory.GetDirectories(Properties.Resources.LokacijaPomocnihFajlova + @"Jelovnik\" + kategorije[izabranaKategorija] + @"\").ToList();
+                    List<string> jela = new List<string>();
+                    foreach (var item in jelaSaPathovima) jela.Add(Path.GetFileName(item).Trim());
+                    jela.Add("Povratak na izbor kategorija");
+                    proMenu izborJela = new proMenu(jela.ToArray(), @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -103,12 +214,60 @@ Izaberite jelo koje želite da obrišete iz jelovnika:
 
 _______________________________________________________________________________________________________________
 
+Izaberite jelo koje želite da obrišete iz jelovnika:
+");
+                    int izabranoJelo = izborJela.PokreniMeni();
+                    if (izabranoJelo == jelaSaPathovima.Count) goto Line72;
+                    else
+                    {
+                        Directory.Delete(jelaSaPathovima[izabranoJelo], true);
+                        Console.WriteLine(Environment.NewLine + "Brisanje uspešno");
+                        System.Threading.Thread.Sleep(1500);
+                        IzmenaJelovnika();
+                    }
+
+                }
+            }
+            else if (izabraniIndex == 0)
+            {
+                proMenu izborKategorije = new proMenu(kategorijeZaMeni.ToArray(), @"                           _ _ _              _ _                    _____           _                        
+──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
+─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
+──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
+────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
+──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
+                    | |                       _/ |                                                            
+                    |_|                      |__/                                                             
+
+_______________________________________________________________________________________________________________
+
+Izaberite kategoriju u koju želite da dodate jelo:
+");
+                int izabranaKategorija = izborKategorije.PokreniMeni();
+                string kat = "";
+                if (izabranaKategorija == kategorije.Count)
+                {
+                    IzmenaJelovnika();
+                    return;
+                }
+                else kat = kategorije[izabranaKategorija];
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
+──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
+─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
+──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
+────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
+──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
+                    | |                       _/ |                                                            
+                    |_|                      |__/                                                             
+_______________________________________________________________________________________________________________
 Unos novog jela:
 ");
                 Console.ResetColor();
                 Console.CursorVisible = true;
                 Console.Write("Ime jela: ");
-                Console.InputEncoding = Encoding.UTF8;
+                Console.InputEncoding = Encoding.Unicode;
                 string imeNovogJela = Console.ReadLine();
                 while (imeNovogJela == "")
                 {
@@ -122,41 +281,25 @@ Unos novog jela:
                     Console.Write("Podaci nisu uneti! Molimo unesite cenu: ");
                     cena = Console.ReadLine();
                 }
-                Console.WriteLine("Detalji o jelu (pisati sve rečenice u jednom redu, biće prikazane svaka posebno):");
-                string[] detaljiOJelu = Console.ReadLine().Split('.');
-                while (detaljiOJelu.Length == 0 || detaljiOJelu[0] == "")
-                {
-                    Console.Write("Podaci nisu uneti! Molim unesite detalje: ");
-                    detaljiOJelu = Console.ReadLine().Split('.');
-                }
+                Console.Write("Sastojci jela (nije obavezno): ");
+                string detaljiOJelu = Console.ReadLine();
+
+                detaljiOJelu = detaljiOJelu == "" ? "<==>" : detaljiOJelu;
+
                 Console.CursorVisible = false;
-                for (int i = 0; i < detaljiOJelu.Length; i++)
-                {
-                    detaljiOJelu[i] = detaljiOJelu[i].Trim();
-                }
-                if (!File.ReadAllLines(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf").Contains(imeNovogJela + "=" + cena))
-                {
-                    if(File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf").EndsWith(Environment.NewLine))
-                    {
-                        File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf", imeNovogJela + "=" + cena);
-                    }
-                    else File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf", "\n" + imeNovogJela + "=" + cena);
-                }
-                else
-                {
-                    Console.WriteLine("Ovo jelo već postoji u jelovniku. Prebacujem na meni izmene jelovnika.");
-                    System.Threading.Thread.Sleep(1000);
-                    IzmenaJelovnika();
-                }
-                File.WriteAllLines(Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + imeNovogJela + "=" + cena + ".pf", detaljiOJelu);
-                Console.WriteLine("");
-                Console.WriteLine("Novo jelo dodato u jelovnik!");
-                System.Threading.Thread.Sleep(1000);
+
+                Console.OutputEncoding = Encoding.Unicode;
+                Console.WriteLine(Properties.Resources.LokacijaPomocnihFajlova + @"Jelovnik\" + kat + @"\" + imeNovogJela + @"\");
+                Directory.CreateDirectory(Properties.Resources.LokacijaPomocnihFajlova + @"Jelovnik\" + kat + @"\" + imeNovogJela + @"\");
+                File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Jelovnik\" + kat + @"\" + imeNovogJela + @"\o_jelu.pf", detaljiOJelu + Environment.NewLine + cena, Encoding.Unicode);
+                Console.WriteLine(Environment.NewLine + "Novo jelo uspešno dodato!");
+                System.Threading.Thread.Sleep(1500);
                 IzmenaJelovnika();
             }
-            else if (izabranaStavka == 1)
+            else if (izabraniIndex == 1)
             {
-                proMenu meniZaIzmenuJela = new proMenu(jelaMeni.ToArray(), @"                           _ _ _              _ _                    _____           _                        
+            Line189:
+                proMenu izborKategorije = new proMenu(kategorijeZaMeni.ToArray(), @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -169,34 +312,37 @@ ________________________________________________________________________________
 
 Izaberite jelo koje želite da izmenite:
 ");
-                if (jelaMeni.Count == 1)
+                int izabranaKategorija = izborKategorije.PokreniMeni();
+                string kat = "";
+                if (izabranaKategorija == kategorije.Count)
                 {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
-──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
-─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
-──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
-────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
-──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
-                    | |                       _/ |                                                            
-                    |_|                      |__/                                                             
-
-_______________________________________________________________________________________________________________
-
-Izaberite jelo koje želite da izmenite:
-");
-                    Console.WriteLine("Nema unetih jela u sistem. Za povratak na prethodni meni pritisnite dugme ESC.");
-                    while (Console.ReadKey(true).Key != ConsoleKey.Escape) { }
                     IzmenaJelovnika();
+                    return;
                 }
-                else
-                {
-                    int izabranoJeloZaIzmenuIndex = meniZaIzmenuJela.PokreniMeni();
-                    if (izabranoJeloZaIzmenuIndex == jelaMeni.Count - 1) IzmenaJelovnika();
-                    string izabranoJeloZaIzmenuString = jela[izabranoJeloZaIzmenuIndex];
-                    IzmenaJela(izabranoJeloZaIzmenuIndex, izabranoJeloZaIzmenuString, jela.ToArray());
-                }
+                else kat = kategorije[izabranaKategorija];
+                List<string> jelaSaPathovima = Directory.GetDirectories(Properties.Resources.LokacijaPomocnihFajlova + @"Jelovnik\" + kat + @"\").ToList();
+                List<string> jela = new List<string>();
+                foreach (var item in jelaSaPathovima) jela.Add(Path.GetFileName(item).Trim());
+                jela.Add("Povratak na izbor kategorija");
+                proMenu izborJela = new proMenu(jela.ToArray(), @"                           _ _ _              _ _                    _____           _                        
+──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
+─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
+──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
+────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
+──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
+                    | |                       _/ |                                                            
+                    |_|                      |__/                                                             
+
+_______________________________________________________________________________________________________________
+
+Izaberite jelo koje želite da izmenite:
+");
+                int izabranoJelo = izborJela.PokreniMeni();
+                string jeloZaIzmenu = "";
+                if (izabranoJelo == jelaSaPathovima.Count) goto Line189;
+                else jeloZaIzmenu = jela[izabranoJelo];
+
+                IzmenaJela(izabranoJelo, jeloZaIzmenu, jelaSaPathovima.ToArray());
             }
         }
 
@@ -219,235 +365,42 @@ ________________________________________________________________________________
 ", item);
             Console.Write("Novo ime jela (ukoliko ne želite da promenite ime, ostavite prazno): ");
             Console.CursorVisible = true;
-            Console.InputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.Unicode;
             string novoIme = Console.ReadLine();
-            if (novoIme == "") novoIme = item.Split('=')[0];
+            if (novoIme != "")
+            {
+                Directory.Move(jela[index], Path.GetDirectoryName(jela[index]) + @"\" + novoIme);
+                item = novoIme;
+            }
             Console.Write("Nova cena jela (ukoliko ne želite da promenite cenu, ostavite prazno): ");
             string novaCena = Console.ReadLine();
-            Console.CursorVisible = false;
-            if (novaCena == "") novaCena = item.Split('=')[1];
-            File.Move(Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + item + ".pf", Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + novoIme + "=" + novaCena + ".pf");
-            StringBuilder builder = new StringBuilder(File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf"));
-            builder.Replace(item, novoIme + "=" + novaCena);
-            File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + "meni.pf", builder.ToString());
-            Console.Write("Uskoro će se otvoriti Notepad sa deskripcijom jela. Unesite željene izmene, sačuvajte i izađite iz Notepada.");
-            System.Threading.Thread.Sleep(1500);
-            System.Diagnostics.Process.Start("notepad.exe", Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + novoIme + "=" + novaCena + ".pf");
-            while (System.Diagnostics.Process.GetProcessesByName("notepad").Length != 0) { }
-            Console.WriteLine("\nIzmene uspešno unete!");
+            if (novaCena == "") novaCena = File.ReadAllLines(Path.GetDirectoryName(jela[index]) + @"\" + novoIme + @"\o_jelu.pf")[1];
+            Console.Write("Da li želite da obrišete sastojke jela (da/ne): ");
+            string brisati = Console.ReadLine().Trim();
+            string noviSastojciJela = "";
+            while (brisati != "da" && brisati != "ne")
+            {
+                Console.WriteLine("Nije dobar unos! Pokušajte ponovo: ");
+                brisati = Console.ReadLine();
+            }
+            if (brisati == "da") noviSastojciJela = "<==>";
+            else
+            {
+                Console.Write("Novi sastojci jela (ukoliko ne želite da promenite sastojke, ostavite prazno): ");
+                noviSastojciJela = Console.ReadLine();
+                Console.CursorVisible = false;
+                if (noviSastojciJela == "") noviSastojciJela = File.ReadAllLines(Path.GetDirectoryName(jela[index]) + @"\" + novoIme + @"\o_jelu.pf")[0];
+            }
+
+            File.WriteAllText(Path.GetDirectoryName(jela[index]) + @"\" + novoIme + @"\o_jelu.pf", noviSastojciJela + Environment.NewLine + novaCena);
+            Console.WriteLine(Environment.NewLine + "Izmene uspešno unete!");
             System.Threading.Thread.Sleep(1500);
             IzmenaJelovnika();
         }
         //end jela
 
 
-        //pica
-        private void IzmenaKartePica()
-        {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Clear();
-            Console.ResetColor();
-            proMenu meniIzmenaKartePica = new proMenu(new string[] { "Novo piće", "Izmeni piće", "Briši piće", "Povratak na menadžerski meni" }, @"                           _ _ _              _ _                    _____           _                        
-──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
-─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
-──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
-────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
-──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
-                    | |                       _/ |                                                            
-                    |_|                      |__/                                                             
 
-_______________________________________________________________________________________________________________
-
-Izmena karte pića:
-");
-            List<string> pica = File.ReadAllLines(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf").ToList();
-            List<string> picaMeni = new List<string>();
-            foreach (var item in pica) picaMeni.Add(item);
-            picaMeni.Add("Odustani od izmena");
-            int izabranaStavka = meniIzmenaKartePica.PokreniMeni();
-            if (izabranaStavka == 3)
-            {
-                Console.Clear();
-                Init();
-                return;
-            }
-            else if (izabranaStavka == 2)
-            {
-                proMenu izborPicaZaBrisanje = new proMenu(picaMeni.ToArray(), @"                           _ _ _              _ _                    _____           _                        
-──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
-─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
-──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
-────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
-──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
-                    | |                       _/ |                                                            
-                    |_|                      |__/                                                             
-
-_______________________________________________________________________________________________________________
-
-Izaberite piće koje želite da obrišete iz karte pića:
-");
-                int piceZaBrisanjeIndex = izborPicaZaBrisanje.PokreniMeni();
-                if (piceZaBrisanjeIndex == pica.Count) IzmenaKartePica();
-                else
-                {
-                    string piceZaBrisanjeString = pica[piceZaBrisanjeIndex];
-                    pica.Remove(piceZaBrisanjeString);
-                    File.Delete(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf");
-                    File.WriteAllLines(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf", pica.ToArray());
-                    File.Delete(Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + piceZaBrisanjeString + ".pf");
-                    IzmenaKartePica();
-                }
-            }
-            else if (izabranaStavka == 0)
-            {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
-──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
-─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
-──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
-────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
-──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
-                    | |                       _/ |                                                            
-                    |_|                      |__/                                                             
-
-_______________________________________________________________________________________________________________
-
-Unos novog pića:
-");
-                Console.ResetColor();
-                Console.CursorVisible = true;
-                Console.Write("Ime pića: ");
-                Console.InputEncoding = Encoding.UTF8;
-                string imeNovogPica = Console.ReadLine();
-                while(imeNovogPica == "")
-                {
-                    Console.WriteLine("Podaci nisu uneti! Molimo unesite ime novog jela: ");
-                }
-                Console.Write("Cena u dinarima (bez PDV-a): ");
-                string cena = Console.ReadLine();
-                while(!int.TryParse(cena, out int tempInt) || tempInt == 0)
-                {
-                    Console.WriteLine("Podaci nisu uneti! Molimo unesite cenu: ");
-                    cena = Console.ReadLine();
-                }
-                Console.WriteLine("Detalji o piću (pisati sve rečenice u jednom redu, biće prikazane svaka posebno):");
-                string[] detaljiOPicu = Console.ReadLine().Split('.');
-                while(detaljiOPicu.Length == 0 || detaljiOPicu[0] == "")
-                {
-                    Console.WriteLine("Podaci nisu uneti! Molimo unesite detalje: ");
-                    detaljiOPicu = Console.ReadLine().Split('.');
-                }
-                Console.CursorVisible = false;
-                for (int i = 0; i < detaljiOPicu.Length; i++)
-                {
-                    detaljiOPicu[i] = detaljiOPicu[i].Trim();
-                }
-                if (!File.ReadAllLines(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf").Contains(imeNovogPica + "=" + cena))
-                {
-                    if(File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf").EndsWith(Environment.NewLine))
-                    {
-                        File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf", imeNovogPica + "=" + cena);
-                    }
-                    else File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf", "\n" + imeNovogPica + "=" + cena);
-                }
-                else
-                {
-                    Console.WriteLine("Ovo piće već postoji u karti pića. Prebacujem na meni izmene karte pića.");
-                    System.Threading.Thread.Sleep(1000);
-                    IzmenaKartePica();
-                }
-                File.WriteAllLines(Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + imeNovogPica + "=" + cena + ".pf", detaljiOPicu);
-                Console.WriteLine("");
-                Console.WriteLine("Novo piće je dodato u kartu pića!");
-                System.Threading.Thread.Sleep(1000);
-                IzmenaKartePica();
-            }
-            else if (izabranaStavka == 1)
-            {
-                proMenu meniZaIzmenuPica = new proMenu(picaMeni.ToArray(), @"                           _ _ _              _ _                    _____           _                        
-──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
-─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
-──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
-────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
-──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
-                    | |                       _/ |                                                            
-                    |_|                      |__/                                                             
-
-_______________________________________________________________________________________________________________
-
-Izaberite piće koje želite da izmenite:
-");
-                if (picaMeni.Count == 1)
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
-──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
-─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
-──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
-────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
-──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
-                    | |                       _/ |                                                            
-                    |_|                      |__/                                                             
-
-_______________________________________________________________________________________________________________
-
-Izaberite piće koje želite da izmenite:
-");
-                    Console.WriteLine("Nema unetih pića u sistem. Za povratak na prethodni meni pritisnite dugme ESC.");
-                    while(Console.ReadKey(true).Key != ConsoleKey.Escape) { }
-                    IzmenaKartePica();
-                }
-                else
-                {
-                    int izabranoPiceZaIzmenuIndex = meniZaIzmenuPica.PokreniMeni();
-                    if (izabranoPiceZaIzmenuIndex == picaMeni.Count - 1) IzmenaKartePica();
-                    string izabranoPiceZaIzmenuString = pica[izabranoPiceZaIzmenuIndex];
-                    IzmenaPica(izabranoPiceZaIzmenuIndex, izabranoPiceZaIzmenuString, pica.ToArray());
-                }
-            }
-        }
-
-        private void IzmenaPica(int index, string item, string[] pica)
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
-──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
-─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
-──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
-────█────   / ____ \| |_) | | |   < (_| | (__| | | (_| |  / / (_| | | | \ \  __/\__ \ || (_) | | | (_| | | | |
-──▄▄█▄▄──  /_/    \_\ .__/|_|_|_|\_\__,_|\___|_| |\__,_| /___\__,_| |_|  \_\___||___/\__\___/|_|  \__,_|_| |_|
-                    | |                       _/ |                                                            
-                    |_|                      |__/                                                             
-
-_______________________________________________________________________________________________________________
-
-{0}:
-", item);
-            Console.InputEncoding = Encoding.UTF8;
-            Console.Write("Novo ime pića (ukoliko ne želite da promenite ime, ostavite prazno): ");
-            Console.CursorVisible = true;
-            string novoIme = Console.ReadLine();
-            if (novoIme == "") novoIme = item.Split('=')[0];
-            Console.Write("Nova cena pića (ukoliko ne želite da promenite cenu, ostavite prazno): ");
-            string novaCena = Console.ReadLine();
-            Console.CursorVisible = false;
-            if (novaCena == "") novaCena = item.Split('=')[1];
-            File.Move(Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + item + ".pf", Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + novoIme + "=" + novaCena + ".pf");
-            StringBuilder builder = new StringBuilder(File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf"));
-            builder.Replace(item, novoIme + "=" + novaCena);
-            File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + "karta_pica.pf", builder.ToString());
-            Console.Write("Uskoro će se otvoriti Notepad sa opisom pića. Unesite željene izmene, sačuvajte i izađite iz Notepada.");
-            System.Threading.Thread.Sleep(1500);
-            System.Diagnostics.Process.Start("notepad.exe", Properties.Resources.LokacijaPomocnihFajlova + @"Detalji o artiklima\" + novoIme + "=" + novaCena + ".pf");
-            while (System.Diagnostics.Process.GetProcessesByName("notepad").Length != 0) { }
-            Console.WriteLine("\nIzmene uspešno unete!");
-            System.Threading.Thread.Sleep(1500);
-            IzmenaKartePica();
-        }
-        //end pica
 
         private string UnosSifre()
         {
@@ -583,15 +536,10 @@ Da li ste sigurni da želite da obrišete sadržaj knjige utisaka? Ova radnja je
                     return;
                 }
             }
-            else if(izabraniIndex == 0)
+            else if (izabraniIndex == 0)
             {
                 IzmenaJelovnika();
             }
-            else if(izabraniIndex == 1)
-            {
-                IzmenaKartePica();
-            }
-
         }
     }
 }
