@@ -1,4 +1,7 @@
-# Projekat "Aplikacija za Restoran"/Project "Restaurant Application"
+![Projekat - Aplikacija za restoran heading ](https://user-images.githubusercontent.com/40390033/153943134-5fa85ab8-80e7-4171-aa7b-70681b2e55c7.png)
+
+
+
 
 ### Srpski
 
@@ -14,23 +17,13 @@ Projekat "**Aplikacija za restoran**" je namenjen da pomogne u radu restorana i 
 * izmena jelovnika, karte pića, brisanje podataka iz knjige utisaka...
 
 ### Slike programa tokom rada
-![image](https://user-images.githubusercontent.com/40390033/150867353-6b23bcfa-97f8-4254-956d-3537f1718003.png)  
-Učitavanje aplikacije  
-![image](https://user-images.githubusercontent.com/40390033/150867484-267de53e-c062-45d1-8b6c-9314cda2462d.png)  
-Glavni meni  
-![image](https://user-images.githubusercontent.com/40390033/150867527-c09101f7-e6e9-4fbc-b9ee-29d73c90cfff.png)  
-Jelovnik  
-![image](https://user-images.githubusercontent.com/40390033/150867575-945e1945-39c0-49ce-865c-8cea53693d64.png)  
-Prijavni formular za menadžera restorana  
-
-#
-**Ovaj program se nalazi pod zaštitom troklauzulne BSD Licence**
+<img src="https://user-images.githubusercontent.com/40390033/153943489-5469fdb0-cb6f-45f2-94b1-53d47f045583.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/40390033/153943559-8f671db5-b141-4eda-81d6-cc1c647eaac1.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/40390033/153943646-e732a2fb-b2b7-4c3d-9b2d-0d7203545f6e.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/40390033/153943746-91c9e509-a001-44d5-b79c-05822dacdbe8.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/40390033/153944354-d82128d4-fcca-4dd5-a92d-a92d57e1fa0b.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/40390033/153944400-6c482aa1-1880-4a63-9ff7-50cbe526c956.png" width="30%"></img> 
 
 #
 ### English
 
 ## About project
-Project "**Restaurant Application**" is intended for use in restaurants and cafés. This software has **CLI environment** and is intended for use on **Windows** machines.
+Project "**Restaurant Application**" is intended for use in restaurants. This software has **CLI environment** and is intended for use on **Windows** machines.
 
 ### Main features
 * food and beverages menu
@@ -42,13 +35,7 @@ Project "**Restaurant Application**" is intended for use in restaurants and caf�
 
 
 ### Some screenshots of the program in work
-![image](https://user-images.githubusercontent.com/40390033/150867353-6b23bcfa-97f8-4254-956d-3537f1718003.png)  
-Application loading
-![image](https://user-images.githubusercontent.com/40390033/150867484-267de53e-c062-45d1-8b6c-9314cda2462d.png)  
-Main menu
-![image](https://user-images.githubusercontent.com/40390033/150867527-c09101f7-e6e9-4fbc-b9ee-29d73c90cfff.png)  
-Food menu
-![image](https://user-images.githubusercontent.com/40390033/150867575-945e1945-39c0-49ce-865c-8cea53693d64.png)  
-Manager login form  
+<img src="https://user-images.githubusercontent.com/40390033/153943489-5469fdb0-cb6f-45f2-94b1-53d47f045583.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/40390033/153943559-8f671db5-b141-4eda-81d6-cc1c647eaac1.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/40390033/153943646-e732a2fb-b2b7-4c3d-9b2d-0d7203545f6e.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/40390033/153943746-91c9e509-a001-44d5-b79c-05822dacdbe8.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/40390033/153944354-d82128d4-fcca-4dd5-a92d-a92d57e1fa0b.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/40390033/153944400-6c482aa1-1880-4a63-9ff7-50cbe526c956.png" width="30%"></img> 
 #
+**Ovaj program je pod zaštitom troklauzulne BSD Licence (BSD License 2.0)**  
 **This program is licenced under 3-Clause BSD License (BSD License 2.0)**
