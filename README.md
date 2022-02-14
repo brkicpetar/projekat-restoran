@@ -17,5 +17,4 @@ Project "**Restaurant Application**" is intended for use in restaurants. This so
 #
 Serbian **README** is available, check out **README_srb.md**!
 #
-**Ovaj program je pod zaštitom troklauzulne BSD Licence (BSD License 2.0)**  
 **This program is licenced under 3-Clause BSD License (BSD License 2.0)**  
