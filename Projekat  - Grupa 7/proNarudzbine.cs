@@ -119,7 +119,7 @@ Trenutno nema unetih jela u jelovnik. Kontaktirajte menadžera restorana!
 
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
+                Console.Write(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -130,7 +130,7 @@ Trenutno nema unetih jela u jelovnik. Kontaktirajte menadžera restorana!
  
 _______________________________________________________________________________________________________________
  
-Koliko {0} zelite da narucite: ", opcije2[izabranoJelo]);
+Koliko {0} želite da naručite: ", opcije2[izabranoJelo]);
                 int broj = -1;
                 Console.ResetColor();
                 Console.CursorVisible = true;
@@ -142,28 +142,31 @@ Koliko {0} zelite da narucite: ", opcije2[izabranoJelo]);
                 }
                 Console.CursorVisible = false;
 
-                if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf").Split('=').Length == 1)
+                if (broj != 0)
                 {
-                    File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", "");
+                    if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf").Split('=').Length == 1)
+                    {
+                        File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", "");
+                    }
+                    if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf") == "")
+                    {
+                        File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf",
+                            opcije2[izabranoJelo] + "=" + File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1] + "=" + broj + "\n");
+                        File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
+                            opcije2[izabranoJelo] + ", " + broj + ", " + (broj * int.Parse(File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1])).ToString("0.00") + " RSD\n");
+                    }
+                    else
+                    {
+                        File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf",
+                            opcije2[izabranoJelo] + "=" + File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1] + "=" + broj + "\n");
+                        File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
+                            opcije2[izabranoJelo] + ", " + broj + ", " + (broj * int.Parse(File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1])).ToString("0.00") + " RSD\n");
+                    }
+                    Console.WriteLine("Uspešno dodato na račun.");
+                    System.Threading.Thread.Sleep(2500);
+                    kat = "";
+                    meniKarta = -1;
                 }
-                if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf") == "")
-                {
-                    File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf",
-                        opcije2[izabranoJelo] + "=" + File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1] + "=" + broj + "\n");
-                    File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
-                        opcije2[izabranoJelo] + ", " + broj + ", " + (broj * int.Parse(File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1])).ToString("0.00") + " RSD\n");
-                }
-                else
-                {
-                    File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf",
-                        opcije2[izabranoJelo] + "=" + File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1] + "=" + broj + "\n");
-                    File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
-                        opcije2[izabranoJelo] + ", " + broj + ", " + (broj * int.Parse(File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1])).ToString("0.00") + " RSD\n");
-                }
-                Console.WriteLine("Uspešno dodato na račun.");
-                System.Threading.Thread.Sleep(2500);
-                kat = "";
-                meniKarta = -1;
                 goto Line36;
             }
             else if (IzabranaOpcija == 1)
@@ -257,28 +260,31 @@ Koliko {0} zelite da narucite: ", opcije2[izabranoPice]);
                 }
                 Console.CursorVisible = false;
 
-                if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf").Split('=').Length == 1)
+                if (broj != 0)
                 {
-                    File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", "");
+                    if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf").Split('=').Length == 1)
+                    {
+                        File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", "");
+                    }
+                    if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf") == "")
+                    {
+                        File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf",
+                            opcije2[izabranoPice] + "=" + File.ReadAllLines(picaFolderi[izabranoPice] + @"\o_jelu.pf")[1] + "=" + broj + "\n");
+                        File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
+                            opcije2[izabranoPice] + ", " + broj + ", " + (broj * int.Parse(File.ReadAllLines(picaFolderi[izabranoPice] + @"\o_jelu.pf")[1])).ToString("0.00") + " RSD\n");
+                    }
+                    else
+                    {
+                        File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf",
+                            opcije2[izabranoPice] + "=" + File.ReadAllLines(picaFolderi[izabranoPice] + @"\o_jelu.pf")[1] + "=" + broj + "\n");
+                        File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
+                            opcije2[izabranoPice] + ", " + broj + ", " + (broj * int.Parse(File.ReadAllLines(picaFolderi[izabranoPice] + @"\o_jelu.pf")[1])).ToString("0.00") + " RSD\n");
+                    }
+                    Console.WriteLine("Uspešno dodato na račun.");
+                    System.Threading.Thread.Sleep(2500);
+                    kat = "";
+                    meniKarta = -1;
                 }
-                if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf") == "")
-                {
-                    File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf",
-                        opcije2[izabranoPice] + "=" + File.ReadAllLines(picaFolderi[izabranoPice] + @"\o_jelu.pf")[1] + "=" + broj + "\n");
-                    File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
-                        opcije2[izabranoPice] + ", " + broj + ", " + (broj * int.Parse(File.ReadAllLines(picaFolderi[izabranoPice] + @"\o_jelu.pf")[1])).ToString("0.00") + " RSD\n");
-                }
-                else
-                {
-                    File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf",
-                        opcije2[izabranoPice] + "=" + File.ReadAllLines(picaFolderi[izabranoPice] + @"\o_jelu.pf")[1] + "=" + broj + "\n");
-                    File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
-                        opcije2[izabranoPice] + ", " + broj + ", " + (broj * int.Parse(File.ReadAllLines(picaFolderi[izabranoPice] + @"\o_jelu.pf")[1])).ToString("0.00") + " RSD\n");
-                }
-                Console.WriteLine("Uspešno dodato na račun.");
-                System.Threading.Thread.Sleep(2500);
-                kat = "";
-                meniKarta = -1;
                 goto Line36;
             }
             else if (IzabranaOpcija == 2)
