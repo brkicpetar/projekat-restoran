@@ -118,7 +118,7 @@ Trenutno nema unetih jela u jelovnik. Kontaktirajte menadžera restorana!
 
 
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
@@ -136,7 +136,7 @@ Koliko {0} zelite da narucite: ", opcije2[izabranoJelo]);
                 Console.CursorVisible = true;
                 while (!int.TryParse(Console.ReadLine(), out broj) || broj < 0)
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("Nije dobar unos. Pokušajte ponovo: ");
                     Console.ResetColor();
                 }
@@ -233,7 +233,7 @@ Trenutno nema unetih pića u kartu pića. Kontaktirajte menadžera restorana!
 
 
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
@@ -251,7 +251,7 @@ Koliko {0} zelite da narucite: ", opcije2[izabranoPice]);
                 Console.CursorVisible = true;
                 while (!int.TryParse(Console.ReadLine(), out broj) || broj < 0)
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("Nije dobar unos. Pokušajte ponovo: ");
                     Console.ResetColor();
                 }
@@ -290,7 +290,7 @@ Koliko {0} zelite da narucite: ", opcije2[izabranoPice]);
                     cena_PDV += int.Parse(item.Split('=')[1]) * int.Parse(item.Split('=')[2]);
                 }
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
@@ -331,7 +331,7 @@ Popust: " + popust + @" RSD
 ---------------------------------------
 Ukupna cena: " + cena.ToString("0.00") + @" RSD
 ");
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Uspešno zaključen račun. Dođite nam ponovo!");
                 System.Threading.Thread.Sleep(2500);
                 File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", "");

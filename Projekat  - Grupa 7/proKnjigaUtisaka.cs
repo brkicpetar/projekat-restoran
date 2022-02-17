@@ -36,7 +36,7 @@ Knjiga utisaka:
             if (izabraniIndex == 0)
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
@@ -53,7 +53,7 @@ Knjiga utisaka
 );
                 if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf") == "")
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Knjiga utisaka je prazna"); 
                 }
                 else
@@ -72,7 +72,7 @@ Knjiga utisaka
             else if (izabraniIndex == 1)
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
@@ -93,18 +93,18 @@ Unos utisaka:
                 string[] utisak = Console.ReadLine().Split('.');
                 while (utisak.Length == 0 || utisak[0] == "")
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("Podaci nisu uneti! Molimo unesite utiske: ");
                     Console.ForegroundColor = ConsoleColor.White;
                     utisak = Console.ReadLine().Split('.');
                 }
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Unesite Vaše ime: ");
                 Console.ForegroundColor = ConsoleColor.White;
                 string ime1 = Console.ReadLine();
                 while (ime1 == "" )
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Ime nije uneto pravilno ili nije uneto uopšte, pokušajte ponovo: ");
                     Console.ForegroundColor = ConsoleColor.White;
                     ime1 = Console.ReadLine();

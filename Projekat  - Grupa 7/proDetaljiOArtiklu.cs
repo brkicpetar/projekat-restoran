@@ -15,7 +15,7 @@ namespace Projekat____Grupa_7
             string glavno = Properties.Resources.LokacijaPomocnihFajlova + (meniKarta == 0 ? @"Jelovnik\" : @"Karta pica\") + Kategorija + @"\" + Artikal + @"\o_jelu.pf";
             Console.Clear();
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  

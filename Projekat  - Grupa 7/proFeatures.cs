@@ -9,7 +9,7 @@ namespace Projekat____Grupa_7
         {
             Console.Title = "Projekat \"Aplikacija za Restoran\" - Grupa 7";
             Console.WriteLine(@"");
-            Console.OutputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.Unicode;
             Console.CursorVisible = false;
             PokretanjeMenija();
         }

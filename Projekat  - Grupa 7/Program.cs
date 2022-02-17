@@ -8,9 +8,9 @@ namespace Projekat____Grupa_7
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.OutputEncoding = Encoding.UTF8;
-            Console.InputEncoding = Encoding.UTF8;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
             Console.Title = "Projekat \"Aplikacija za Restoran\" - Grupa 7";
             Console.WriteLine(@"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
