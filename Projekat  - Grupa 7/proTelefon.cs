@@ -26,7 +26,7 @@ ________________________________________________________________________________
 Odaberite opciju:
 ");
             int izabranaOpcija = glavniMeni.PokreniMeni();
-            if (izabranaOpcija == 3)
+            if (izabranaOpcija == 2)
             {
                 proFeatures f = new proFeatures();
                 f.Init();
