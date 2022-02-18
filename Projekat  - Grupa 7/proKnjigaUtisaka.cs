@@ -90,14 +90,16 @@ Unos utisaka:
                 Console.WriteLine("Upisati utiske (pisati sve rečenice u jednom redu, biće prikazane svaka posebno):");
                 Console.CursorVisible = true;
                 Console.ForegroundColor = ConsoleColor.White;
-                string[] utisak = Console.ReadLine().Split(new char[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
-                while (utisak.Length == 0)
+                string[] ut = Console.ReadLine().Split(new char[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+                while (ut.Length == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("Podaci nisu uneti! Molimo unesite utiske: ");
                     Console.ForegroundColor = ConsoleColor.White;
-                    utisak = Console.ReadLine().Split(new char[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+                    ut = Console.ReadLine().Split(new char[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
                 }
+                string[] utisak = new string[ut.Length];
+                for (int i = 0; i < ut.Length; i++) utisak[i] = ut[i].Trim();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Unesite Vaše ime: ");
                 Console.ForegroundColor = ConsoleColor.White;
