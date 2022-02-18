@@ -47,16 +47,16 @@ Odaberite opciju:
 
 _______________________________________________________________________________________________________________
 
-Unesite ime:");
+Unesite ime: ");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.CursorVisible = true;
                 string ime = Console.ReadLine();
-                Console.CursorVisible = false;
                 while (ime == "")
                 {
                     Console.Write("Pogrešno ste uneli. Unesite ponovo: ");
                     ime = Console.ReadLine();
                 }
+                Console.CursorVisible = false;
                 string date = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
                 File.Create(Properties.Resources.LokacijaPomocnihFajlova + @"Narudzbine preko telefona\Narudzbina " + ime + " " + date + ".pf").Close();
             Line62:
@@ -193,7 +193,7 @@ Izaberite porudžbinu za preuzimanje:
                 double cenaBezPDVa = 0;
                 string[] stavkeSaRacuna = File.ReadAllLines(narudzbinePath[izabranaPorudzbina]);
                 foreach (var stavka in stavkeSaRacuna)
-                    cenaBezPDVa += double.Parse(File.ReadAllLines(stavka.Split('=')[0] + @"\o_jelu.pf")[1]) * int.Parse(stavka.Split('=')[1]);
+                    cenaBezPDVa += double.Parse(File.ReadAllLines(stavka.Split('=')[0] + @"\o_jelu.pf")[1]) * double.Parse(stavka.Split('=')[1]);
 
                 string cenaSaPDVomIUslugom = (cenaBezPDVa * 1.11 * 1.2).ToString("0.00");
                 string uslugaUCeni = (cenaBezPDVa * 0.11).ToString("0.00");
@@ -210,11 +210,13 @@ Ukupna cena: " + cenaSaPDVomIUslugom + @" RSD
 ");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Uspešno plaćanje. Dođite nam ponovo!");
-                System.Threading.Thread.Sleep(2500);
                 File.Delete(narudzbinePath[izabranaPorudzbina]);
                 File.Copy(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun " + imeNarudzbine + " " + datumNarudzbine + ".pf",
                     Properties.Resources.LokacijaPomocnihFajlova + @"Arhiva\Racun " + datumNarudzbine + ".pf");
                 File.Delete(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun " + imeNarudzbine + " " + datumNarudzbine + ".pf");
+                File.SetAttributes(Properties.Resources.LokacijaPomocnihFajlova + @"Arhiva\Racun " + datumNarudzbine + ".pf", FileAttributes.ReadOnly);
+                System.Diagnostics.Process.Start("notepad.exe", Properties.Resources.LokacijaPomocnihFajlova + @"Arhiva\Racun " + datumNarudzbine + ".pf");
+                System.Threading.Thread.Sleep(2500);
                 proFeatures mainMenu = new proFeatures();
                 mainMenu.Init();
                 return;

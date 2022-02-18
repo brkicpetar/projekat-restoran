@@ -11,7 +11,7 @@ namespace Projekat____Grupa_7
         public void Init(string kat, int sto, int meniKarta)
         {
             Console.Clear();
-            proMenu OdabirStola = new proMenu(new string[] { "Prvi sto", "Drugi sto", "Treci sto", "Četvrti sto", "Peti sto", "Povratak na glavni meni" }, @"                           _ _ _              _ _                    _____           _                        
+            proMenu OdabirStola = new proMenu(new string[] { "Prvi sto", "Drugi sto", "Treći sto", "Četvrti sto", "Peti sto", "Povratak na glavni meni" }, @"                           _ _ _              _ _                    _____           _                        
 ──────▄▀─      /\         | (_) |            (_|_)                  |  __ \         | |                       
 ─█▀▀▀█▀█─     /  \   _ __ | |_| | ____ _  ___ _ _  __ _   ______ _  | |__) |___  ___| |_ ___  _ __ __ _ _ __  
 ──▀▄░▄▀──    / /\ \ | '_ \| | | |/ / _` |/ __| | |/ _` | |_  / _` | |  _  // _ \/ __| __/ _ \| '__/ _` | '_ \ 
@@ -153,7 +153,7 @@ Koliko {0} želite da naručite: ", opcije2[izabranoJelo]);
                         File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf",
                             opcije2[izabranoJelo] + "=" + File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1] + "=" + broj + "\n");
                         File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
-                            opcije2[izabranoJelo] + ", " + broj + ", " + (broj * int.Parse(File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1])).ToString("0.00") + " RSD\n");
+                            opcije2[izabranoJelo] + ", " + broj + ", " + (broj * double.Parse(File.ReadAllLines(jelaFolderi[izabranoJelo] + @"\o_jelu.pf")[1])).ToString("0.00") + " RSD\n");
                     }
                     else
                     {
@@ -289,11 +289,11 @@ Koliko {0} zelite da narucite: ", opcije2[izabranoPice]);
             }
             else if (IzabranaOpcija == 2)
             {
-                int cena_PDV = 0;
+                double cena_PDV = 0;
                 string[] racun = File.ReadAllLines(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf");
                 foreach (var item in racun)
                 {
-                    cena_PDV += int.Parse(item.Split('=')[1]) * int.Parse(item.Split('=')[2]);
+                    cena_PDV += double.Parse(item.Split('=')[1]) * double.Parse(item.Split('=')[2]);
                 }
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -339,11 +339,14 @@ Ukupna cena: " + cena.ToString("0.00") + @" RSD
 ");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Uspešno zaključen račun. Dođite nam ponovo!");
-                System.Threading.Thread.Sleep(2500);
+                string datum = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
                 File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + (IzabraniSto + 1).ToString() + ".pf", "");
                 File.Copy(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun" + (IzabraniSto + 1).ToString() + ".pf",
-                    Properties.Resources.LokacijaPomocnihFajlova + @"Arhiva\Racun " + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".pf");
+                    Properties.Resources.LokacijaPomocnihFajlova + @"Arhiva\Racun " + datum + ".pf");
                 File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Trenutni Racuni\racun" + (IzabraniSto + 1).ToString() + ".pf", "");
+                File.SetAttributes(Properties.Resources.LokacijaPomocnihFajlova + @"Arhiva\Racun " + datum + ".pf", FileAttributes.ReadOnly);
+                System.Diagnostics.Process.Start("notepad.exe", Properties.Resources.LokacijaPomocnihFajlova + @"Arhiva\Racun " + datum + ".pf");
+                System.Threading.Thread.Sleep(2500);
                 proFeatures f = new proFeatures();
                 f.Init();
                 return;

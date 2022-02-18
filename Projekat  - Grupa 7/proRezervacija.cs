@@ -35,7 +35,7 @@ namespace Projekat____Grupa_7
 
 _______________________________________________________________________________________________________________
 
-Izaberite sto koji zelite da rezervisete:
+Izaberite sto koji želite da rezervišete:
 ");
             int izabraniIndex = rezervacija.PokreniMeni();
 
@@ -58,7 +58,7 @@ Izaberite sto koji zelite da rezervisete:
                 Console.CursorVisible = false;
                 File.WriteAllText(Properties.Resources.LokacijaPomocnihFajlova + @"Stolovi\sto" + maxi [izabraniIndex] + ".pf", ime);
                 Console.WriteLine("Sto {0} je rezervisan na ime {1}" , maxi[izabraniIndex], ime );
-                System.Threading.Thread.Sleep(2597);
+                System.Threading.Thread.Sleep(1597);
                 proFeatures j = new proFeatures();
                 j.Init();
                 return;

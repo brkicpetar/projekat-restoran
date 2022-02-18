@@ -28,10 +28,10 @@ namespace Projekat____Grupa_7
 _______________________________________________________________________________________________________________
  
 {0} - cena (bez PDV-a): {1} RSD
-", Artikal, int.Parse(File.ReadAllLines(glavno)[1]).ToString("0.00"));
+", Artikal, double.Parse(File.ReadAllLines(glavno)[1]).ToString("0.00"));
             Console.ResetColor();
-            string ispis = File.ReadAllLines(glavno)[0] == "<==>" ? "Očekivana cena sa PDV-om i uslugom: " + (int.Parse(File.ReadAllLines(glavno)[1]) * 1.11 * 1.2).ToString("0.00") + " RSD" :
-                 (meniKarta == 0 ? "Sastojci: " : "Proizvođač: ") + File.ReadAllLines(glavno)[0] + "\n\nOčekivana cena sa PDV-om i uslugom: " + (int.Parse(File.ReadAllLines(glavno)[1]) * 1.11 * 1.2).ToString("0.00") + " RSD";
+            string ispis = File.ReadAllLines(glavno)[0] == "<==>" ? "Očekivana cena sa PDV-om i uslugom: " + (double.Parse(File.ReadAllLines(glavno)[1]) * 1.11 * 1.2).ToString("0.00") + " RSD" :
+                 (meniKarta == 0 ? "Sastojci: " : "Proizvođač: ") + File.ReadAllLines(glavno)[0] + "\n\nOčekivana cena sa PDV-om i uslugom: " + (double.Parse(File.ReadAllLines(glavno)[1]) * 1.11 * 1.2).ToString("0.00") + " RSD";
             Console.WriteLine(ispis);
 
             Console.WriteLine();

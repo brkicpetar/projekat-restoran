@@ -41,7 +41,7 @@ Trenutno nema unetih pića u kartu pića. Kontaktirajte menadžera restorana!
                 return;
             }
             string kategorija = kategorije1[izabranaKategorija];
-            string[] picaFolderi = Directory.GetDirectories(Properties.Resources.LokacijaPomocnihFajlova + @"Karta pica\" + Path.GetFileName(kategorija));
+            string[] picaFolderi = Directory.GetDirectories(kategorija);
             string[] opcije2 = new string[picaFolderi.Length + 2];
             for (int i = 0; i < picaFolderi.Length; i++)
             {
@@ -61,7 +61,7 @@ Trenutno nema unetih pića u kartu pića. Kontaktirajte menadžera restorana!
 _______________________________________________________________________________________________________________
 
 Karta pića - " + opcije1[izabranaKategorija] + @":
-" + (opcije2.Length == 1 ? @"
+" + (opcije2.Length == 2 ? @"
 Trenutno nema unetih pića u kartu pića. Kontaktirajte menadžera restorana!
 " : ""));
             int izabranoPice = meniPica.PokreniMeni();

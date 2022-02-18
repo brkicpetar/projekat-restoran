@@ -49,8 +49,8 @@ Knjiga utisaka:
 _______________________________________________________________________________________________________________
 
 Knjiga utisaka
-"
-);
+_______________________________________________________________________________________________________________
+");
                 if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf") == "")
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -90,13 +90,13 @@ Unos utisaka:
                 Console.WriteLine("Upisati utiske (pisati sve rečenice u jednom redu, biće prikazane svaka posebno):");
                 Console.CursorVisible = true;
                 Console.ForegroundColor = ConsoleColor.White;
-                string[] utisak = Console.ReadLine().Split('.');
-                while (utisak.Length == 0 || utisak[0] == "")
+                string[] utisak = Console.ReadLine().Split(new char[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+                while (utisak.Length == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("Podaci nisu uneti! Molimo unesite utiske: ");
                     Console.ForegroundColor = ConsoleColor.White;
-                    utisak = Console.ReadLine().Split('.');
+                    utisak = Console.ReadLine().Split(new char[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
                 }
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Unesite Vaše ime: ");
@@ -115,19 +115,19 @@ Unos utisaka:
                 if (File.ReadAllText(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf") == "")
                 {
                     File.WriteAllLines(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf", utisak);
-                    File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf", "\n\n" + ime1 + "\n--------------------------------------------------------------------------\n");
+                    File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf", "\n\n" + ime1 + "\n_______________________________________________________________________________________________________________\n");
                    
                 }
                 else
                 {
                     File.AppendAllLines(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf", utisak);
-                    File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf", "\n\n" + ime1 + "\n--------------------------------------------------------------------------\n");
+                    File.AppendAllText(Properties.Resources.LokacijaPomocnihFajlova + "knjiga_utisaka.pf", "\n\n" + ime1 + "\n_______________________________________________________________________________________________________________\n");
                 }
 
             
 
                 Console.WriteLine("Utisak uspešno unet");
-                System.Threading.Thread.Sleep(2730);
+                System.Threading.Thread.Sleep(1730);
                 proKnjigaUtisaka knj = new proKnjigaUtisaka();
                 knj.Init();
                 return;
@@ -138,6 +138,7 @@ Unos utisaka:
             {
                 proFeatures a = new proFeatures();
                 a.Init();
+                return;
             }
         }
     }
