@@ -1,7 +1,7 @@
 ![Projekat - Aplikacija za restoran heading ](https://user-images.githubusercontent.com/40390033/153943134-5fa85ab8-80e7-4171-aa7b-70681b2e55c7.png)
 
 ## About project
-Project "**Restaurant Application**" is intended for use in restaurants. This software has **CLI environment** and is intended for use on **Windows** machines.
+Project "**Restaurant Application**" is intended for use in restaurants. This software has **CL interface** and is intended for use on **Windows** machines.
 
 ### Main features
 * food and beverages menu
